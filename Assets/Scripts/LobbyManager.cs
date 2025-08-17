@@ -32,5 +32,25 @@ public class BehaviourScript : MonoBehaviourPunCallbacks
         inputField.text = PhotonNetwork.NickName;
         Debug.Log(PhotonNetwork.NickName);
     }
+
+    public void CreateRoom()
+    {
+        RoomOptions roomOptions = new RoomOptions { 
+            IsVisible = true,
+            MaxPlayers = 20,
+            IsOpen = true 
+        };
+        PhotonNetwork.CreateRoom("RoomName", roomOptions);
+    }
+
+    public void JoinRoom()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("Game");
+    }
 }
 

@@ -6,10 +6,22 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 
-public class BehaviourScript : MonoBehaviourPunCallbacks
+public class LobbyManager : MonoBehaviourPunCallbacks
 {
+    public static LobbyManager instance;
+    [Header("Room Settings")]
     [SerializeField] private TMP_InputField inputField;
- 
+    [SerializeField] private TMP_Text roomNameText;
+    
+    [Header("Room List Settings")]
+    [SerializeField] private Transform transformRoomList;
+    [SerializeField] private GameObject roomButtonPrefab;
+    
+    [Header("Player List Settings")]
+    [SerializeField] private Transform transformPlayerList;
+    [SerializeField] private GameObject playerNamePrefab;
+    
+    [SerializeField] private GameObject startGameButton;
     
     [SerializeField] private WindowsManager windowsManager;
     private void Awake()

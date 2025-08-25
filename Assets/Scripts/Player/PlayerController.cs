@@ -1,14 +1,16 @@
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IPunObservable
 {
     [SerializeField] private Slider _hpBar;
     [SerializeField] private Text _nameText;
     [SerializeField] private Camera playerCamera;
 
     private Rigidbody rb;
+    private PhotonView _photonView;
 
 
     [SerializeField] private float _rotionSpeed;
@@ -21,11 +23,26 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        _photonView = GetComponent<PhotonView>();
         rb = GetComponent<Rigidbody>();
+
+        if (_photonView.IsMine)
+        {
+            _hpBar.maxValue = Health;
+            _hpBar.value = Health;
+            _nameText.text = PhotonNetwork.NickName;
+            _nameText.enabled = true;
+            _nameText.enabled = false;
+        }
+        else
+        {
+            playerCamera.enabled = false;
+        }
     }
 
     private void Update()
     {
+        if (!_photonView.IsMine) return;
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -58,7 +75,25 @@ public class PlayerController : MonoBehaviour
 
         if (Health <= 0)
         {
+            if (_photonView.IsMine)
+            {
+                GameManager.Instance.LeaveRoom();
+            }
+        }
+    }
 
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(Health);
+            stream.SendNext(_hpBar.value);
+        }
+        else
+        {
+            Health = (int)stream.ReceiveNext();
+            _hpBar.value = (float)stream.ReceiveNext();
         }
     }
 }

@@ -1635,6 +1635,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 1650602147}
+  roomNameText: {fileID: 0}
+  transformRoomList: {fileID: 0}
+  roomButtonPrefab: {fileID: 0}
+  transformPlayerList: {fileID: 0}
+  playerNamePrefab: {fileID: 0}
+  startGameButton: {fileID: 0}
   windowsManager: {fileID: 634073915}
 --- !u!4 &1808781727
 Transform:

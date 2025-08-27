@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30fdd59f23b85234da42051d41d46504, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  itemName: 
-  maxAmout: 0
+  itemType: 0
+  itemName: Apple
+  maxAmout: 10
   itemDescription: 
-  healAmount: 0
+  healAmount: 50

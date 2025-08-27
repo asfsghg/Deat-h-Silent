@@ -38,12 +38,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = $"Player{number}";
     }
 
-    public override void OnJoinedLobby()
-    {
-        windowsManager.OpenLayout(WindowsConstant.Main_Menu_Panel);
-        inputField.text = PhotonNetwork.NickName;
-        Debug.Log(PhotonNetwork.NickName);
-    }
+    //public override void OnJoinedLobby()
+    //{
+    //    windowsManager.OpenLayout(WindowsConstant.Main_Menu_Panel);
+    //    inputField.text = PhotonNetwork.NickName;
+    //   Debug.Log(PhotonNetwork.NickName);
+    //}
 
     public void CreateRoom()
     {

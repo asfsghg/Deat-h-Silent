@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.Instantiate(playerPrefab.name, spawnPos, Quaternion.identity);
+          //ошибка   PhotonNetwork.Instantiate(playerPrefab.name, spawnPos, Quaternion.identity);
         }
     }
 
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.Instantiate(playerPrefab.name, spawnPos, Quaternion.identity);
+           // в тут ошибка  PhotonNetwork.Instantiate(playerPrefab.name, spawnPos, Quaternion.identity);
         }
     }
 

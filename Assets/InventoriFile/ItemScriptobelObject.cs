@@ -10,6 +10,7 @@ public class ItemScriptobelObject : ScriptableObject
     public string itemName;
     public int maxAmout;
     public string itemDescription;
+    public GameObject itemP;
 
         
 }

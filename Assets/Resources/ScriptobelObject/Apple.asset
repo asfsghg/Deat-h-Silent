@@ -16,4 +16,6 @@ MonoBehaviour:
   itemName: Apple
   maxAmout: 10
   itemDescription: 
+  itemP: {fileID: 6040932164538155943, guid: fa152588cbef6a6409d2ac7e5945e64b, type: 3}
+  icon: {fileID: 21300000, guid: bcbf81271d205cc49a7ce42af4bede36, type: 3}
   healAmount: 50

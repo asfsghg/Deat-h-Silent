@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoriSlot : MonoBehaviour
+public class ItemS : MonoBehaviour
 {
     public ItemScriptobelObject item;
     public int amount;
-    public bool isEmpty = true;
 }

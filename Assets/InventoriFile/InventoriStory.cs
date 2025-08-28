@@ -10,8 +10,11 @@ public class InventoriStory : MonoBehaviour
     public Transform InventoriPanel;
     public List<InventoriSlot> slots = new List<InventoriSlot>();
     public bool IsOpen;
+    private Camera MainCamera;
+    public float reachDistance = 1;
     void Start()
     {
+        MainCamera = Camera.main;
         UIPanel.SetActive(false); 
         for (int i = 0; i < InventoriPanel.childCount; i++)
         {
@@ -35,6 +38,40 @@ public class InventoriStory : MonoBehaviour
             else
             {
                 UIPanel.SetActive(false);
+            }
+        }
+        Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+
+
+            if (Physics.Raycast(ray, out hit, reachDistance))
+            {
+                if (hit.collider.gameObject.GetComponent<ItemS>() != null)
+                {
+                    AddItem(hit.collider.gameObject.GetComponent<ItemS>().item, hit.collider.gameObject.GetComponent<ItemS>().amount);
+                    Destroy(hit.collider.gameObject);
+                }
+            }
+        }
+    }
+    private void AddItem(ItemScriptobelObject _item, int _amount)
+    {
+        foreach(InventoriSlot slot in slots)
+        {
+            if(slot.item == _item)
+            {
+                slot.amount += _amount;
+                return;
+            }
+        }
+        foreach (InventoriSlot slot in slots)
+        {
+            if(slot.isEmpty ==false)
+            {
+                slot.amount = _amount;
+                slot.item = _item;
             }
         }
     }

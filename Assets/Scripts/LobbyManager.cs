@@ -37,7 +37,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         int number = Random.Range(0, 1000);
         PhotonNetwork.NickName = $"Player{number}";
     }
-
+ 
     //public override void OnJoinedLobby()
     //{
     //    windowsManager.OpenLayout(WindowsConstant.Main_Menu_Panel);

@@ -11,6 +11,7 @@ public class ItemScriptobelObject : ScriptableObject
     public int maxAmout;
     public string itemDescription;
     public GameObject itemP;
+    public Sprite icon;
 
         
 }

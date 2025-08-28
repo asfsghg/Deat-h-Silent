@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class InventoriStory : MonoBehaviour
 {
@@ -72,6 +73,8 @@ public class InventoriStory : MonoBehaviour
             {
                 slot.amount = _amount;
                 slot.item = _item;
+                slot.isEmpty = false;
+                //slot.SetIcon(ItemS.icon);
             }
         }
     }

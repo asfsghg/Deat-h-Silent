@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -735,7 +736,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 194129142}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2057550740}
+        m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
+        m_MethodName: CreateRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &194129142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1518,12 +1531,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &339629825
 GameObject:
   m_ObjectHideFlags: 0
@@ -6043,6 +6056,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNameInputField: {fileID: 1612586659}
+  roomNameInputField: {fileID: 0}
+  roomNameText: {fileID: 0}
+  transformRoomList: {fileID: 0}
+  roomButtonPrefab: {fileID: 0}
+  transformPlayerList: {fileID: 0}
+  playerNamePrefab: {fileID: 0}
+  startGameButton: {fileID: 0}
   windowsManager: {fileID: 470082502}
 --- !u!4 &2057550741
 Transform:
@@ -6059,6 +6079,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &189353449227718931
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4248600299487332066, guid: f53f93139c59844468e90bb08af25015,
+        type: 3}
+      propertyPath: m_Name
+      value: RoomManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6048056529340093675, guid: f53f93139c59844468e90bb08af25015,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635928127294611937, guid: f53f93139c59844468e90bb08af25015,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.409086
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635928127294611937, guid: f53f93139c59844468e90bb08af25015,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 390.9878
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635928127294611937, guid: f53f93139c59844468e90bb08af25015,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1417.1841
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635928127294611937, guid: f53f93139c59844468e90bb08af25015,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635928127294611937, guid: f53f93139c59844468e90bb08af25015,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635928127294611937, guid: f53f93139c59844468e90bb08af25015,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635928127294611937, guid: f53f93139c59844468e90bb08af25015,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635928127294611937, guid: f53f93139c59844468e90bb08af25015,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635928127294611937, guid: f53f93139c59844468e90bb08af25015,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635928127294611937, guid: f53f93139c59844468e90bb08af25015,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f53f93139c59844468e90bb08af25015, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -6070,3 +6163,4 @@ SceneRoots:
   - {fileID: 436240530}
   - {fileID: 2057550741}
   - {fileID: 470082503}
+  - {fileID: 189353449227718931}

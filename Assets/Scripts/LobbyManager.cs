@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -25,6 +26,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     
     [SerializeField] private WindowsManager windowsManager;
     
+    
+    
+    
     private void Awake()
     {
         PhotonNetwork.ConnectUsingSettings();
@@ -34,37 +38,30 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     { 
         PhotonNetwork.JoinLobby(); 
         PhotonNetwork.AutomaticallySyncScene = true;
-        
-        int number = Random.Range(0, 1000); 
-        PhotonNetwork.NickName = $"Player {number}";
     }
     
     public override void OnJoinedLobby()
     {
         windowsManager.OpenLayout(WindowsConstant.Main_Menu_Panel);
-        playerNameInputField.text = PhotonNetwork.NickName;
+
         Debug.Log("Joined Lobby");
     }
-
-    public void CreateRoom()
-    {
-        RoomOptions roomOptions = new RoomOptions
-        {
-            IsVisible = true,
-            IsOpen = true,
-            MaxPlayers = 15
-        };
-        
-        PhotonNetwork.CreateRoom("RoomName", roomOptions);
-    }
     
-    public void JoinRoom()
-    {
-        PhotonNetwork.JoinRandomRoom();
-    }
 
     public override void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel("Game");
-    } 
+    }
+
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        foreach (Transform obj in transformRoomList)
+        {
+            Destroy(obj.gameObject);
+        }
+        for (int i = 0; i < roomList.Count; i++)
+        {
+            
+        }
+    }
 }

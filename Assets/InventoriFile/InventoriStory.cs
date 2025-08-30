@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager.UI;
@@ -7,75 +7,114 @@ using static UnityEditor.Progress;
 
 public class InventoriStory : MonoBehaviour
 {
+    [Header("UI")]
     public GameObject UIPanel;
     public Transform InventoriPanel;
     public List<InventoriSlot> slots = new List<InventoriSlot>();
     public bool IsOpen;
+
     private Camera MainCamera;
-    public float reachDistance = 1;
+
+    [Header("Pickup Settings")]
+    public float reachDistance = 2f;   
+    public float pickupRadius = 1f;    
+
     void Start()
     {
         MainCamera = Camera.main;
-        UIPanel.SetActive(false); 
+        UIPanel.SetActive(false);
+
+        
         for (int i = 0; i < InventoriPanel.childCount; i++)
         {
-            if(InventoriPanel.GetChild(i).GetComponent<InventoriSlot>() != null)
-            {
-                slots.Add(InventoriPanel.GetChild(i).GetComponent<InventoriSlot>());
-            }
+            InventoriSlot slot = InventoriPanel.GetChild(i).GetComponent<InventoriSlot>();
+            if (slot != null)
+                slots.Add(slot);
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        
+        if (Input.GetKeyDown(KeyCode.E))
         {
             IsOpen = !IsOpen;
-            if (IsOpen)
-            {
-                UIPanel.SetActive(true);
-            }
-            else
-            {
-                UIPanel.SetActive(false);
-            }
+            UIPanel.SetActive(IsOpen);
         }
-        Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+
+        
         if (Input.GetKeyDown(KeyCode.F))
         {
+            PickupItem();
+        }
+    }
 
+    private void PickupItem()
+    {
+        
+        Vector3 center = MainCamera.transform.position + MainCamera.transform.forward * reachDistance;
 
-            if (Physics.Raycast(ray, out hit, reachDistance))
+        
+        Collider[] colliders = Physics.OverlapSphere(center, pickupRadius);
+
+        ItemS nearestItem = null;
+        float nearestDistance = Mathf.Infinity;
+
+       
+        foreach (Collider col in colliders)
+        {
+            if (col.gameObject.TryGetComponent<ItemS>(out ItemS itemS))
             {
-                if (hit.collider.gameObject.GetComponent<ItemS>() != null)
+                float dist = Vector3.Distance(MainCamera.transform.position, col.transform.position);
+                if (dist < nearestDistance)
                 {
-                    AddItem(hit.collider.gameObject.GetComponent<ItemS>().item, hit.collider.gameObject.GetComponent<ItemS>().amount);
-                    Destroy(hit.collider.gameObject);
+                    nearestDistance = dist;
+                    nearestItem = itemS;
                 }
             }
         }
+
+       
+        if (nearestItem != null)
+        {
+            AddItem(nearestItem.item, nearestItem.amount);
+            Destroy(nearestItem.gameObject);
+        }
     }
+
     private void AddItem(ItemScriptobelObject _item, int _amount)
     {
-        foreach(InventoriSlot slot in slots)
+      
+        foreach (InventoriSlot slot in slots)
         {
-            if(slot.item == _item)
+            if (slot.item == _item)
             {
                 slot.amount += _amount;
                 return;
             }
         }
+
         foreach (InventoriSlot slot in slots)
         {
-            if(slot.isEmpty ==false)
+            if (slot.isEmpty)
             {
-                slot.amount = _amount;
                 slot.item = _item;
+                slot.amount = _amount;
                 slot.isEmpty = false;
-                //slot.SetIcon(ItemS.icon);
+                slot.SetIcon(_item.icon); 
+                return;
             }
+        }
+    }
+
+    
+    private void OnDrawGizmosSelected()
+    {
+        if (MainCamera != null)
+        {
+            Vector3 center = MainCamera.transform.position + MainCamera.transform.forward * reachDistance;
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(center, pickupRadius);
         }
     }
 }

@@ -11,8 +11,7 @@ public class PlayerController : MonoBehaviour, IPunObservable
 
     private Rigidbody rb;
     private PhotonView _photonView;
-
-
+    
     [SerializeField] private float _rotionSpeed;
     public float speed = 5f;
     public float jumpForce = 5f;
@@ -20,6 +19,7 @@ public class PlayerController : MonoBehaviour, IPunObservable
     private bool isJumping = false;
 
     private float _currentRotationY = 0f;
+    private IPunObservable _punObservableImplementation;
 
     private void Awake()
     {
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour, IPunObservable
             _hpBar.maxValue = Health;
             _hpBar.value = Health;
             _nameText.text = PhotonNetwork.NickName;
-            _nameText.enabled = true;
+            playerCamera.enabled = true;
             _nameText.enabled = false;
         }
         else
@@ -42,7 +42,8 @@ public class PlayerController : MonoBehaviour, IPunObservable
 
     private void Update()
     {
-        if (!_photonView.IsMine) return;
+        if(!_photonView.IsMine) return;
+        
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -76,13 +77,10 @@ public class PlayerController : MonoBehaviour, IPunObservable
         if (Health <= 0)
         {
             if (_photonView.IsMine)
-            {
                 GameManager.Instance.LeaveRoom();
-            }
         }
     }
-
-
+    
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)

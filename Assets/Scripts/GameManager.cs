@@ -7,19 +7,23 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    public static GameManager Instance;
+    public static GameManager Instance; // null
+    
     [SerializeField] private GameObject playerPrefab;
     
     [SerializeField] private Transform[] playerSpawnPoints;
-    void Awake()
+    
+    private void Awake()
     {
         Instance = this;
+        
         int index = Random.Range(0, playerSpawnPoints.Length);
-        Vector3 spawnPos = playerSpawnPoints[index].position;
+        Vector3 spawnPosition = playerSpawnPoints[index].position;
 
         if (PhotonNetwork.IsMasterClient)
         {
-          //ошибка   PhotonNetwork.Instantiate(playerPrefab.name, spawnPos, Quaternion.identity);
+            PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition, 
+                Quaternion.identity);
         }
     }
 
@@ -28,32 +32,29 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
     }
 
-    public override void OnLeftRoom() 
+    public override void OnLeftRoom()
     {
         SceneManager.LoadScene(0);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.LogFormat("Player {0} has entered the room}",newPlayer.NickName);
+        Debug.LogFormat("Player {0} joined the room", newPlayer.NickName);
     }
 
     public override void OnJoinedRoom()
     {
-        Debug.LogFormat("Player {0} has entered the room}",PhotonNetwork.LocalPlayer.NickName);
+        Debug.LogFormat("Player {0} joined the room", PhotonNetwork.LocalPlayer.NickName);
         
         int index = Random.Range(0, playerSpawnPoints.Length);
-        Vector3 spawnPos = playerSpawnPoints[index].position;
-
-        if (PhotonNetwork.IsMasterClient)
-        {
-           // в тут ошибка  PhotonNetwork.Instantiate(playerPrefab.name, spawnPos, Quaternion.identity);
-        }
+        Vector3 spawnPosition = playerSpawnPoints[index].position;
+        
+        PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition, 
+            Quaternion.identity);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        Debug.LogFormat("Player {0} has left the room",otherPlayer.NickName);
+        Debug.LogFormat("Player {0} left the room", otherPlayer.NickName);
     }
-
 }

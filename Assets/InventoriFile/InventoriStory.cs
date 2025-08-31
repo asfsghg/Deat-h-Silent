@@ -1,120 +1,96 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using static UnityEditor.Progress;
+using RedstoneinventeGameStudio;
 
 public class InventoriStory : MonoBehaviour
 {
-    [Header("UI")]
-    public GameObject UIPanel;
-    public Transform InventoriPanel;
     public List<InventoriSlot> slots = new List<InventoriSlot>();
-    public bool IsOpen;
-
+    public float pickupRadius = 2f;
     private Camera MainCamera;
-
-    [Header("Pickup Settings")]
-    public float reachDistance = 2f;   
-    public float pickupRadius = 1f;    
+    public bool IsOpen;
+    public GameObject UIPanel;
 
     void Start()
     {
         MainCamera = Camera.main;
-        UIPanel.SetActive(false);
-
         
-        for (int i = 0; i < InventoriPanel.childCount; i++)
-        {
-            InventoriSlot slot = InventoriPanel.GetChild(i).GetComponent<InventoriSlot>();
-            if (slot != null)
-                slots.Add(slot);
-        }
+        InventoriSlot[] slotArray = GetComponentsInChildren<InventoriSlot>();
+        slots.AddRange(slotArray);
     }
 
     void Update()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             IsOpen = !IsOpen;
-            UIPanel.SetActive(IsOpen);
-        }
-
-        
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            PickupItem();
-        }
-    }
-
-    private void PickupItem()
-    {
-        
-        Vector3 center = MainCamera.transform.position + MainCamera.transform.forward * reachDistance;
-
-        
-        Collider[] colliders = Physics.OverlapSphere(center, pickupRadius);
-
-        ItemS nearestItem = null;
-        float nearestDistance = Mathf.Infinity;
-
-       
-        foreach (Collider col in colliders)
-        {
-            if (col.gameObject.TryGetComponent<ItemS>(out ItemS itemS))
+            if (IsOpen)
             {
-                float dist = Vector3.Distance(MainCamera.transform.position, col.transform.position);
-                if (dist < nearestDistance)
-                {
-                    nearestDistance = dist;
-                    nearestItem = itemS;
-                }
+                UIPanel.SetActive(true);
+            }
+            else
+            {
+                UIPanel.SetActive(false);
             }
         }
-
-       
-        if (nearestItem != null)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            AddItem(nearestItem.item, nearestItem.amount);
-            Destroy(nearestItem.gameObject);
+            PickupNearbyItem();
         }
     }
 
-    private void AddItem(ItemScriptobelObject _item, int _amount)
+    void PickupNearbyItem()
     {
-      
+        Vector3 center = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(center, pickupRadius);
+
+        foreach (Collider col in colliders)
+        {
+            if (col.TryGetComponent<ItemS>(out ItemS itemS))
+            {
+                Debug.Log("Подобран предмет: " + itemS.itemData.itemName);
+
+                AddItemToInventory(itemS.itemData, itemS.amount);
+
+                Destroy(col.gameObject);
+                break;
+            }
+        }
+    }
+
+    void AddItemToInventory(InventoryItemData item, int amount)
+    {
+       
         foreach (InventoriSlot slot in slots)
         {
-            if (slot.item == _item)
+            if (!slot.isEmpty && slot.item == item)
             {
-                slot.amount += _amount;
+                slot.amount += amount;
+                slot.UpdateUI(); 
                 return;
             }
         }
 
+        // Ищем пустой слот
         foreach (InventoriSlot slot in slots)
         {
             if (slot.isEmpty)
             {
-                slot.item = _item;
-                slot.amount = _amount;
-                slot.isEmpty = false;
-                slot.SetIcon(_item.icon); 
+                slot.item = item;      
+                slot.amount = amount;  
+                slot.isEmpty = false;   
+                slot.UpdateUI();        
                 return;
             }
         }
-    }
 
-    
-    private void OnDrawGizmosSelected()
-    {
-        if (MainCamera != null)
-        {
-            Vector3 center = MainCamera.transform.position + MainCamera.transform.forward * reachDistance;
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(center, pickupRadius);
-        }
+
+        Debug.Log("Инвентарь заполнен!");
     }
 }

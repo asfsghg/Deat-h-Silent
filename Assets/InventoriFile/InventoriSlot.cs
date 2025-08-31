@@ -11,13 +11,13 @@ public class InventoriSlot : MonoBehaviour
     public InventoryItemData item;
     public int amount;
     public bool isEmpty = true;
-    public GameObject iconGO;
+    public Image iconGO;
     public TMP_Text itemAmount;
 
     private void Start()
     {
-        iconGO = transform.GetChild(0).gameObject; // иконка
-        itemAmount = transform.GetChild(1).GetComponent<TMP_Text>(); // количество
+       // iconGO = transform.GetChild(0).gameObject; // иконка
+        itemAmount = transform.GetChild(1).GetComponent<TMP_Text>(); 
         UpdateUI();
     }
 
@@ -33,12 +33,17 @@ public class InventoriSlot : MonoBehaviour
         {
             SetIcon(item.itemIcon);
             itemAmount.text = amount.ToString();
+            iconGO.sprite = item.itemIcon;
+            iconGO.color = Color.white;
+            itemAmount.text = amount.ToString();
         }
         else
         {
             iconGO.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+           
             itemAmount.text = "";
         }
     }
-
 }
+
+

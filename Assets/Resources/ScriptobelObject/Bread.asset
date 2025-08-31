@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   itemName: 
-  maxAmout: 0
+  maxAmout: 5
   itemDescription: 
-  itemP: {fileID: 0}
+  itemP: {fileID: 811702188016399717, guid: efc41ea9b24e5774daacdd0f9ddf6fbc, type: 3}
   icon: {fileID: 0}
-  healAmount: 0
+  healAmount: 50

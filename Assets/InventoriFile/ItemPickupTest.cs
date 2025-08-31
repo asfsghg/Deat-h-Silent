@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ItemPickupTest : MonoBehaviour
 {
-    public float reachDistance = 2f;  // центр сферы перед игроком
-    public float pickupRadius = 3f;   // радиус подбора
+    public float reachDistance = 2f;  
+    public float pickupRadius = 3f;  
     private Camera MainCamera;
 
     void Start()
@@ -31,8 +31,8 @@ public class ItemPickupTest : MonoBehaviour
             if (col.TryGetComponent<ItemS>(out ItemS item))
             {
                 Debug.Log("Picked up: " + item.item);
-                Destroy(col.gameObject);  // удаляем предмет
-                break;  // подбираем только один
+                Destroy(col.gameObject);  
+                break;  
             }
         }
     }

@@ -10,51 +10,44 @@ using RedstoneinventeGameStudio;
 
 public class InventoriStory : MonoBehaviour
 {
-    public GameObject UIPanel;
-    public Transform InventoriPanel;
     public List<InventoriSlot> slots = new List<InventoriSlot>();
-    public bool IsOpen;
-
+    public float pickupRadius = 2f;
     private Camera MainCamera;
-    [SerializeField] private float pickupRadius = 2f;
+    public bool IsOpen;
+    public GameObject UIPanel;
 
     void Start()
     {
         MainCamera = Camera.main;
-        UIPanel.SetActive(false);
-
-        // Собираем все слоты
-        slots.Clear();
-        for (int i = 0; i < InventoriPanel.childCount; i++)
-        {
-            InventoriSlot slot = InventoriPanel.GetChild(i).GetComponent<InventoriSlot>();
-            if (slot != null) slots.Add(slot);
-        }
+        
+        InventoriSlot[] slotArray = GetComponentsInChildren<InventoriSlot>();
+        slots.AddRange(slotArray);
     }
 
     void Update()
     {
-        // Открытие/закрытие инвентаря
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             IsOpen = !IsOpen;
-            UIPanel.SetActive(IsOpen);
+            if (IsOpen)
+            {
+                UIPanel.SetActive(true);
+            }
+            else
+            {
+                UIPanel.SetActive(false);
+            }
         }
-
-        // Попытка подобрать предмет
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("Нажата F");  // проверка
             PickupNearbyItem();
         }
     }
 
     void PickupNearbyItem()
     {
-        // Центр сферы — прямо у игрока (можно смещать по y если нужно)
         Vector3 center = transform.position;
-
-        // Находим все коллайдеры в радиусе
         Collider[] colliders = Physics.OverlapSphere(center, pickupRadius);
 
         foreach (Collider col in colliders)
@@ -63,27 +56,23 @@ public class InventoriStory : MonoBehaviour
             {
                 Debug.Log("Подобран предмет: " + itemS.itemData.itemName);
 
-                // Добавляем в инвентарь
-                AddItem(itemS.itemData, itemS.amount);
+                AddItemToInventory(itemS.itemData, itemS.amount);
 
-                // Удаляем объект со сцены
                 Destroy(col.gameObject);
-
-                // берём только один предмет за раз
                 break;
             }
         }
     }
 
-    void AddItem(InventoryItemData _item, int _amount)
+    void AddItemToInventory(InventoryItemData item, int amount)
     {
-        // Если предмет уже есть в слоте → суммируем количество
+       
         foreach (InventoriSlot slot in slots)
         {
-            if (!slot.isEmpty && slot.item == _item)
+            if (!slot.isEmpty && slot.item == item)
             {
-                slot.amount += _amount;
-                slot.UpdateUI();
+                slot.amount += amount;
+                slot.UpdateUI(); 
                 return;
             }
         }
@@ -93,15 +82,15 @@ public class InventoriStory : MonoBehaviour
         {
             if (slot.isEmpty)
             {
-                slot.item = _item;
-                slot.amount = _amount;
-                slot.isEmpty = false;
-                slot.UpdateUI();
+                slot.item = item;      
+                slot.amount = amount;  
+                slot.isEmpty = false;   
+                slot.UpdateUI();        
                 return;
             }
         }
 
-        Debug.Log("Инвентарь заполнен!");
 
+        Debug.Log("Инвентарь заполнен!");
     }
 }

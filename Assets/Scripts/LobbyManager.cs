@@ -48,20 +48,78 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     
 
-    public override void OnJoinedRoom()
-    {
-        PhotonNetwork.LoadLevel("Game");
-    }
+
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         foreach (Transform obj in transformRoomList)
-        {
+        {        
+            
+            
             Destroy(obj.gameObject);
         }
         for (int i = 0; i < roomList.Count; i++)
         {
-            
+            GameObject obj = Instantiate(roomButtonPrefab,transformRoomList);
+            RoomListItem roomItem = obj.GetComponent<RoomListItem>();
+            roomItem.SetRoomInfo(roomList[i]);
         }
+    }
+    
+    public void JoinRoom(RoomInfo roomInfo)
+    {
+     PhotonNetwork.JoinRoom(roomInfo.Name);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        windowsManager.OpenLayout(WindowsConstant.Game_Room_Panel);
+            startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+            
+            roomNameText.text = PhotonNetwork.CurrentRoom.Name;
+            
+            Player [] players = PhotonNetwork.PlayerList;
+
+            foreach (Transform trn in transformPlayerList)
+            {
+                Destroy(trn.gameObject);
+            }
+
+            for (int i = 0; i < players.Length; i++)
+            {
+                GameObject obj = Instantiate(playerNamePrefab, transformPlayerList);
+                PlayerListItem playerItem = obj.GetComponent<PlayerListItem>();
+                playerItem.SetPlayer(players[i]);
+            }
+       
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        GameObject obj = Instantiate(playerNamePrefab, transformPlayerList);
+        PlayerListItem playerItem = obj.GetComponent<PlayerListItem>();
+        playerItem.SetPlayer(newPlayer);
+    }
+
+    public override void OnLeftRoom()
+    {
+        windowsManager.OpenLayout(WindowsConstant.Find_Rooms_Panel);
+    }
+
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public void CreateRoom()
+    {
+        if (string.IsNullOrEmpty(roomNameInputField.text)) return;
+        roomNameText.text = roomNameInputField.text;
+        PhotonNetwork.CreateRoom(roomNameText.text);
+    }
+
+    public void StartGameLevel(int levelIndex)
+    {
+        PhotonNetwork.LoadLevel(levelIndex);
     }
 }

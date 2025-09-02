@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine;
-using Photon.Realtime;
-public class PlayerlistItem : MonoBehaviourPunCallbacks
+
+public class PlayerListItem : MonoBehaviourPunCallbacks
 {
-   [SerializeField] private TMP_Text playernameText;
+   [SerializeField] private TMP_Text playerNameText;
    private Player _player;
 
    public void SetPlayer(Player player)
    {
-      
       _player = player;
-      playernameText.text = player.NickName;
+      playerNameText.text = player.NickName;
    }
 
    public override void OnPlayerLeftRoom(Player otherPlayer)

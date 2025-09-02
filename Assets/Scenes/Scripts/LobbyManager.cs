@@ -26,11 +26,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     
     [SerializeField] private WindowsManager windowsManager;
     
-    
-    
-    
     private void Awake()
     {
+        Instance = this;
         PhotonNetwork.ConnectUsingSettings();
     }
 
@@ -43,55 +41,54 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         windowsManager.OpenLayout(WindowsConstant.Main_Menu_Panel);
-
-        Debug.Log("Joined Lobby");
     }
-    
-
-
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         foreach (Transform obj in transformRoomList)
-        {        
-            
-            
+        {
             Destroy(obj.gameObject);
         }
-        for (int i = 0; i < roomList.Count; i++)
+
+        foreach (RoomInfo info in roomList)
         {
-            GameObject obj = Instantiate(roomButtonPrefab,transformRoomList);
+            if (info.RemovedFromList) continue;
+            if(info.PlayerCount == 0) continue;
+            
+            GameObject obj = Instantiate(roomButtonPrefab, transformRoomList);
             RoomListItem roomItem = obj.GetComponent<RoomListItem>();
-            roomItem.SetRoomInfo(roomList[i]);
+            
+            roomItem.SetRoomInfo(info);
+            roomItem.CheckRoom();
         }
     }
-    
+
     public void JoinRoom(RoomInfo roomInfo)
     {
-     PhotonNetwork.JoinRoom(roomInfo.Name);
+        PhotonNetwork.JoinRoom(roomInfo.Name);
     }
 
     public override void OnJoinedRoom()
     {
         windowsManager.OpenLayout(WindowsConstant.Game_Room_Panel);
-            startGameButton.SetActive(PhotonNetwork.IsMasterClient);
-            
-            roomNameText.text = PhotonNetwork.CurrentRoom.Name;
-            
-            Player [] players = PhotonNetwork.PlayerList;
+        
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+      
+        roomNameText.text = PhotonNetwork.CurrentRoom.Name;
+        
+        Player[] players = PhotonNetwork.PlayerList;
 
-            foreach (Transform trn in transformPlayerList)
-            {
-                Destroy(trn.gameObject);
-            }
+        foreach (Transform trn in transformPlayerList)
+        {
+            Destroy(trn.gameObject);
+        }
 
-            for (int i = 0; i < players.Length; i++)
-            {
-                GameObject obj = Instantiate(playerNamePrefab, transformPlayerList);
-                PlayerListItem playerItem = obj.GetComponent<PlayerListItem>();
-                playerItem.SetPlayer(players[i]);
-            }
-       
+        for (int i = 0; i < players.Length; i++)
+        {
+            GameObject obj = Instantiate(playerNamePrefab, transformPlayerList);
+            PlayerListItem playerItem = obj.GetComponent<PlayerListItem>();
+            playerItem.SetPlayer(players[i]);
+        }
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -113,9 +110,18 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
-        if (string.IsNullOrEmpty(roomNameInputField.text)) return;
-        roomNameText.text = roomNameInputField.text;
-        PhotonNetwork.CreateRoom(roomNameText.text);
+        string roomName = roomNameInputField.text;
+        
+        if(string.IsNullOrEmpty(roomName)) return;
+        
+        roomNameText.text = roomName;
+        
+        RoomOptions options = new RoomOptions();
+        options.IsVisible = true;
+        options.IsOpen = true;
+        options.MaxPlayers = 2;
+        
+        PhotonNetwork.CreateRoom(roomName, options);
     }
 
     public void StartGameLevel(int levelIndex)

@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 1035491186758167635}
   - component: {fileID: 5402536154062755778}
   - component: {fileID: 7338214181983165494}
-  - component: {fileID: 8117495048598932960}
+  - component: {fileID: 7518356010381402391}
   m_Layer: 5
   m_Name: Button Room
   m_TagString: Untagged
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8117495048598932960
+--- !u!114 &7518356010381402391
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,7 +265,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7663197454042725969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 769fc819698644847bbe54627b8d5c52, type: 3}
+  m_Script: {fileID: 11500000, guid: ab37e49d22234174d9784f072b2c3e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roomName: {fileID: 5122156835398352077}
+  _button: {fileID: 7338214181983165494}

@@ -21,22 +21,29 @@ public class PlayerController : MonoBehaviour, IPunObservable
     private float _currentRotationY = 0f;
     private IPunObservable _punObservableImplementation;
 
+    private PlayerManager _playerManager;
+    
     private void Awake()
     {
         _photonView = GetComponent<PhotonView>();
         rb = GetComponent<Rigidbody>();
 
+        _playerManager = PhotonView.Find((int)_photonView.InstantiationData[0]).GetComponent<PlayerManager>();
+        
         if (_photonView.IsMine)
         {
             _hpBar.maxValue = Health;
             _hpBar.value = Health;
-            _nameText.text = PhotonNetwork.NickName;
+            _nameText.text = _photonView.Owner.NickName;
             playerCamera.enabled = true;
             _nameText.enabled = false;
         }
         else
         {
-            playerCamera.enabled = false;
+            Destroy(playerCamera.gameObject);
+            _hpBar.maxValue = Health;
+            _hpBar.value = Health;
+            _nameText.text = _photonView.Owner.NickName;
         }
     }
 
@@ -76,8 +83,8 @@ public class PlayerController : MonoBehaviour, IPunObservable
 
         if (Health <= 0)
         {
-            if (_photonView.IsMine)
-                GameManager.Instance.LeaveRoom();
+            if (_photonView.IsMine) ;
+            // GameManager.Instance.LeaveRoom();
         }
     }
     

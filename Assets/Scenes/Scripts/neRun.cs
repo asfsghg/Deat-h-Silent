@@ -24,7 +24,7 @@ public class neRun : MonoBehaviour
     private Vector3 velocity;          
     private Vector3 currentMove;       
 
-    void Awake()
+    void Start()
     {
         cc = GetComponent<CharacterController>();
         if (groundCheck == null)
@@ -40,8 +40,8 @@ public class neRun : MonoBehaviour
     void Update()
     {
         
-        float x = Input.GetAxisRaw("Horizontal");   // A/D
-        float z = Input.GetAxisRaw("Vertical");     // W/S
+        float x = Input.GetAxisRaw("Horizontal");   
+        float z = Input.GetAxisRaw("Vertical");     
         Vector3 inputDir = (transform.right * x + transform.forward * z).normalized;
 
         

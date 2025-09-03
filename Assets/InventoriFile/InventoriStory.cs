@@ -77,7 +77,7 @@ public class InventoriStory : MonoBehaviour
             }
         }
 
-        // Ищем пустой слот
+        
         foreach (InventoriSlot slot in slots)
         {
             if (slot.isEmpty)

@@ -1,17 +1,13 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
-using static UnityEditor.Progress;
+
 using RedstoneinventeGameStudio;
 
 public class InventoriStory : MonoBehaviour
 {
     public List<InventoriSlot> slots = new List<InventoriSlot>();
-    public float pickupRadius = 2f;
+    public float pickupRadius = 10f;
     private Camera MainCamera;
     public bool IsOpen;
     public GameObject UIPanel;
@@ -24,21 +20,15 @@ public class InventoriStory : MonoBehaviour
         slots.AddRange(slotArray);
     }
 
-    void Update()
+    void LateUpdate()
     {
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             IsOpen = !IsOpen;
-            if (IsOpen)
-            {
-                UIPanel.SetActive(true);
-            }
-            else
-            {
-                UIPanel.SetActive(false);
-            }
+            UIPanel.SetActive(IsOpen);
         }
+        
         if (Input.GetKeyDown(KeyCode.F))
         {
             PickupNearbyItem();
@@ -52,6 +42,7 @@ public class InventoriStory : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
+            Debug.Log(1);
             if (col.TryGetComponent<ItemS>(out ItemS itemS))
             {
                 Debug.Log("Подобран предмет: " + itemS.itemData.itemName);
@@ -59,9 +50,9 @@ public class InventoriStory : MonoBehaviour
                 AddItemToInventory(itemS.itemData, itemS.amount);
 
                 Destroy(col.gameObject);
-                break;
             }
         }
+
     }
 
     void AddItemToInventory(InventoryItemData item, int amount)

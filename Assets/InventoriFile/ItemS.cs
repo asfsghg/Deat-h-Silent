@@ -9,5 +9,7 @@ public class ItemS : MonoBehaviour
     public ItemScriptobelObject item;
     public int amount;
     public InventoryItemData itemData;
+   
 
+    
 }

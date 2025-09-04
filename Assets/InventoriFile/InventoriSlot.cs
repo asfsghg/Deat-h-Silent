@@ -11,12 +11,12 @@ public class InventoriSlot : MonoBehaviour
     public InventoryItemData item;
     public int amount;
     public bool isEmpty = true;
-    public Image iconGO;
+    public GameObject iconGO;
     public TMP_Text itemAmount;
 
-    private void Start()
+    private void Awake()
     {
-       // iconGO = transform.GetChild(0).gameObject; // иконка
+        iconGO = transform.GetChild(0).gameObject; 
         itemAmount = transform.GetChild(1).GetComponent<TMP_Text>(); 
         UpdateUI();
     }
@@ -27,21 +27,21 @@ public class InventoriSlot : MonoBehaviour
         iconGO.GetComponent<Image>().sprite = icon;
     }
 
-    public void UpdateUI()
+   public void UpdateUI()
     {
         if (!isEmpty && item != null)
         {
             SetIcon(item.itemIcon);
             itemAmount.text = amount.ToString();
-            iconGO.sprite = item.itemIcon;
-            iconGO.color = Color.white;
+            //iconGO.sprite = item.itemIcon;
+            //iconGO.color = Color.white;
             itemAmount.text = amount.ToString();
         }
-        else
+       else
         {
             iconGO.GetComponent<Image>().color = new Color(1, 1, 1, 0);
            
-            itemAmount.text = "";
+           itemAmount.text = "";
         }
     }
 }

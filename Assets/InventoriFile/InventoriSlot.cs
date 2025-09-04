@@ -16,32 +16,29 @@ public class InventoriSlot : MonoBehaviour
 
     private void Awake()
     {
-        iconGO = transform.GetChild(0).gameObject; 
-        itemAmount = transform.GetChild(1).GetComponent<TMP_Text>(); 
+        iconGO = transform.GetChild(0).gameObject;
+        itemAmount = transform.GetChild(1).GetComponent<TMP_Text>();
         UpdateUI();
     }
 
     public void SetIcon(Sprite icon)
     {
-        iconGO.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-        iconGO.GetComponent<Image>().sprite = icon;
+        Image img = iconGO.GetComponent<Image>();
+        img.color = Color.white;
+        img.sprite = icon;
     }
 
-   public void UpdateUI()
+    public void UpdateUI()
     {
         if (!isEmpty && item != null)
         {
             SetIcon(item.itemIcon);
             itemAmount.text = amount.ToString();
-            //iconGO.sprite = item.itemIcon;
-            //iconGO.color = Color.white;
-            itemAmount.text = amount.ToString();
         }
-       else
+        else
         {
             iconGO.GetComponent<Image>().color = new Color(1, 1, 1, 0);
-           
-           itemAmount.text = "";
+            itemAmount.text = "";
         }
     }
 }

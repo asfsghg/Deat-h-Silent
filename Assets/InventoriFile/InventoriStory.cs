@@ -63,8 +63,7 @@ public class InventoriStory : MonoBehaviour
             if (!slot.isEmpty && slot.item == item)
             {
                 slot.amount += amount;
-                slot.itemAmount.text = slot.amount.ToString();
-
+                slot.UpdateUI(); 
                 return;
             }
         }
@@ -76,12 +75,14 @@ public class InventoriStory : MonoBehaviour
             {
                 slot.item = item;      
                 slot.amount = amount;  
-                slot.isEmpty = false;    
-                slot.itemAmount.text = amount.ToString();
+                slot.isEmpty = false;   
+                slot.UpdateUI();   
+                //slot.itemAmount.text = amount.ToString();
                 return;
             }
         }
 
 
+        Debug.Log("Инвентарь заполнен!");
     }
 }

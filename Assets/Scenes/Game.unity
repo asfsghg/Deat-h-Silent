@@ -1312,6 +1312,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1761752467828609474, guid: fa152588cbef6a6409d2ac7e5945e64b,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2783237938352796244, guid: fa152588cbef6a6409d2ac7e5945e64b,
         type: 3}
       propertyPath: itemData
@@ -1387,6 +1392,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apple
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839147760309273676, guid: fa152588cbef6a6409d2ac7e5945e64b,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2514,7 +2524,6 @@ GameObject:
   - component: {fileID: 808688466}
   - component: {fileID: 808688465}
   - component: {fileID: 808688464}
-  - component: {fileID: 808688468}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2605,22 +2614,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &808688468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808688463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2799244276f2ae41b582b4b87237d96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slots: []
-  pickupRadius: 2
-  IsOpen: 1
-  UIPanel: {fileID: 1674479834}
 --- !u!1 &878558127
 GameObject:
   m_ObjectHideFlags: 0
@@ -3173,6 +3166,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1761752467828609474, guid: fa152588cbef6a6409d2ac7e5945e64b,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2783237938352796244, guid: fa152588cbef6a6409d2ac7e5945e64b,
         type: 3}
       propertyPath: itemData
@@ -3248,6 +3246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apple (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839147760309273676, guid: fa152588cbef6a6409d2ac7e5945e64b,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4823,6 +4826,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1508468107}
+  - component: {fileID: 1508468108}
   m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
@@ -4845,6 +4849,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1797811985}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1508468108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508468106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2799244276f2ae41b582b4b87237d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots: []
+  pickupRadius: 2
+  IsOpen: 0
+  UIPanel: {fileID: 808688463}
 --- !u!1 &1512108802 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7475767543192471586, guid: 1464e5d72308e8d4183a962e643a430a,
@@ -5480,11 +5500,6 @@ GameObject:
   - component: {fileID: 1797811984}
   - component: {fileID: 1797811983}
   - component: {fileID: 1797811982}
-  - component: {fileID: 1797811981}
-  - component: {fileID: 1797811980}
-  - component: {fileID: 1797811979}
-  - component: {fileID: 1797811978}
-  - component: {fileID: 1797811977}
   - component: {fileID: 1797811986}
   - component: {fileID: 1797811988}
   m_Layer: 0
@@ -5494,89 +5509,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1797811977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797811976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780f90e951d635f439326ea715cd97e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  defaultFOV: 60
-  maxZoomFOV: 15
-  currentZoom: 0
-  sensitivity: 1
---- !u!114 &1797811978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797811976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 084c01ab381b9da4082c1f84cf70751b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceThreshold: 0.15
-  isGrounded: 0
---- !u!114 &1797811979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797811976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f977f53412d81140ab13b3fca57cca2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody: {fileID: 0}
-  jumpStrength: 2
-  groundCheck: {fileID: 0}
---- !u!114 &1797811980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797811976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27b67ddb3d23b8340b125aede56d7e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: 306
-  movement: {fileID: 1797811981}
-  movementSpeed: 2
-  headToLower: {fileID: 1269458764}
-  crouchYHeadPosition: 1
-  colliderToLower: {fileID: 0}
-  <IsCrouched>k__BackingField: 0
---- !u!114 &1797811981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797811976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97fca36bd81de7c4cafce7bbf02ca611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  canRun: 1
-  <IsRunning>k__BackingField: 0
-  runSpeed: 9
-  runningKey: 304
-  rigidbody: {fileID: 0}
 --- !u!136 &1797811982
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6720,6 +6652,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1761752467828609474, guid: fa152588cbef6a6409d2ac7e5945e64b,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2783237938352796244, guid: fa152588cbef6a6409d2ac7e5945e64b,
         type: 3}
       propertyPath: itemData
@@ -6795,6 +6732,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Apple (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839147760309273676, guid: fa152588cbef6a6409d2ac7e5945e64b,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

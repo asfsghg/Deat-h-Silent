@@ -28,7 +28,7 @@ public class ItemPickupTest : MonoBehaviour
 
         foreach (Collider col in hits)
         {
-            if (col.TryGetComponent<ItemS>(out ItemS item))
+            if (col.TryGetComponent<Item>(out Item item))
             {
                 Debug.Log("Picked up: " + item.item);
                 Destroy(col.gameObject);  

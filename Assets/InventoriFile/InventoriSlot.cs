@@ -16,8 +16,24 @@ public class InventoriSlot : MonoBehaviour
 
     private void Awake()
     {
-        iconGO = transform.GetChild(0).gameObject;
-        itemAmount = transform.GetChild(1).GetComponent<TMP_Text>();
+        Image[] images = GetComponentsInChildren<Image>();
+        foreach (var img in images)
+        {
+            if (img.gameObject != gameObject)
+            {
+                iconGO = img.gameObject;
+                break;
+            }
+        }
+        TMP_Text[] texts = GetComponentsInChildren<TMP_Text>();
+        foreach (var txt in texts)
+        {
+            if (txt.gameObject != gameObject)
+            {
+                itemAmount = txt;
+                break;
+            }
+        }
         UpdateUI();
     }
 
@@ -26,6 +42,8 @@ public class InventoriSlot : MonoBehaviour
         Image img = iconGO.GetComponent<Image>();
         img.color = Color.white;
         img.sprite = icon;
+        // iconGO.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        iconGO.GetComponent<Image>().sprite = icon;
     }
 
     public void UpdateUI()
@@ -37,7 +55,7 @@ public class InventoriSlot : MonoBehaviour
         }
         else
         {
-            iconGO.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            iconGO.GetComponent<Image>().color = new Color(1, 1, 1, 1);
             itemAmount.text = "";
         }
     }

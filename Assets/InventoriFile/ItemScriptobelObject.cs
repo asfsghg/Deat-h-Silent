@@ -12,6 +12,7 @@ public class ItemScriptobelObject : ScriptableObject
     public string itemDescription;
     public GameObject itemP;
     public Sprite icon;
+    public int healAmount;
 
-        
+
 }

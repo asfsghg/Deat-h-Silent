@@ -1,8 +1,9 @@
 ﻿
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 using RedstoneinventeGameStudio;
+using Unity.VisualScripting;
 
 public class InventoriStory : MonoBehaviour
 {
@@ -43,9 +44,9 @@ public class InventoriStory : MonoBehaviour
         foreach (Collider col in colliders)
         {
             Debug.Log(1);
-            if (col.TryGetComponent<ItemS>(out ItemS itemS))
+            if (col.TryGetComponent<Item>(out Item itemS))
             {
-                Debug.Log("Подобран предмет: " + itemS.itemData.itemName);
+                Debug.Log("редмет: " + itemS.itemData.itemName);
 
                 AddItemToInventory(itemS.itemData, itemS.amount);
 
@@ -76,13 +77,13 @@ public class InventoriStory : MonoBehaviour
                 slot.item = item;      
                 slot.amount = amount;  
                 slot.isEmpty = false;   
-                slot.UpdateUI();   
+                slot.UpdateUI();
                 //slot.itemAmount.text = amount.ToString();
-                return;
+                return; 
             }
         }
 
 
-        Debug.Log("Инвентарь заполнен!");
+        Debug.Log("фул инвентарь");
     }
 }

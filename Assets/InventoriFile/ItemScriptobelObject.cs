@@ -8,7 +8,7 @@ public class ItemScriptobelObject : ScriptableObject
 {
     public ItemType itemType;
     public string itemName;
-    public int maxAmout;
+    public int maxAmount;
     public string itemDescription;
     public GameObject itemP;
     public Sprite icon;

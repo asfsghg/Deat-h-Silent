@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30fdd59f23b85234da42051d41d46504, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  itemType: 0
+  itemType: 1
   itemName: Apple
   maxAmout: 10
-  itemDescription: 
+  itemDescription: 1
   itemP: {fileID: 6040932164538155943, guid: fa152588cbef6a6409d2ac7e5945e64b, type: 3}
   icon: {fileID: 21300000, guid: bcbf81271d205cc49a7ce42af4bede36, type: 3}
+  healAmount: 50
   healAmount: 50

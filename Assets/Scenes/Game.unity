@@ -5633,7 +5633,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2799244276f2ae41b582b4b87237d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots: []
+  slots:
+  - {fileID: 1437354658}
+  - {fileID: 1499615923}
+  - {fileID: 1817317336}
+  - {fileID: 1490239208}
+  - {fileID: 383868900}
+  - {fileID: 965867272}
+  - {fileID: 63584683}
+  - {fileID: 1512108806}
+  - {fileID: 1290411663}
+  - {fileID: 1232101427}
+  - {fileID: 942036376}
+  - {fileID: 1927716241}
+  - {fileID: 437180016}
+  - {fileID: 125436639}
+  - {fileID: 1795863529}
+  - {fileID: 1188209380}
   pickupRadius: 10
   IsOpen: 0
   UIPanel: {fileID: 0}
@@ -6642,7 +6658,7 @@ PrefabInstance:
     - target: {fileID: 5024248749748221233, guid: fa152588cbef6a6409d2ac7e5945e64b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.72
+      value: -8.71
       objectReference: {fileID: 0}
     - target: {fileID: 5024248749748221233, guid: fa152588cbef6a6409d2ac7e5945e64b,
         type: 3}
@@ -6652,7 +6668,7 @@ PrefabInstance:
     - target: {fileID: 5024248749748221233, guid: fa152588cbef6a6409d2ac7e5945e64b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.58
+      value: 9.1
       objectReference: {fileID: 0}
     - target: {fileID: 5024248749748221233, guid: fa152588cbef6a6409d2ac7e5945e64b,
         type: 3}

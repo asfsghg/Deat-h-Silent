@@ -20,7 +20,7 @@ public class PickUpWea : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(camera.transform.position,camera.transform.forward,out hit,distance))
         {
-            if(hit.transform.tag =="Apple")
+            if (hit.transform.tag == "Apple" || hit.transform.tag == "Weapon")
             {
                 if (canPIckUp) Drop();
                 surrent = hit.transform.gameObject;

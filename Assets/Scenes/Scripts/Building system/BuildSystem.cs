@@ -1,69 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 public class BuildSystem : MonoBehaviour
 {
-    [SerializeField] private GameObject Baseplate;
-    [SerializeField] private GameObject Stairs;
-    [SerializeField] private GameObject Wall;
-    [SerializeField] private GameObject Window;
-    private GameObject _spawn;
-    private bool _canBuild = true;
-    private bool _IsSpawned = false;
-    [SerializeField] private LayerMask groundMask;
-    void LateUpdate()
-    {
-        
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 10f, groundMask))
+    [SerializeField] private GameObject baseplatePrefab;
+    [SerializeField] private GameObject stairsPrefab;
+    [SerializeField] private GameObject wallPrefab;
+    [SerializeField] private GameObject windowPrefab;
+
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float maxRayDistance = 100f;
+
+    private Camera mainCamera;
+    private GameObject previewInstance;  
+    private GameObject selectedPrefab;    
+
+    void Start()
+    {
+        mainCamera = Camera.main;
+
+    }
+
+    void Update()
+    {
+
+        if (selectedPrefab == null) return;
+
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, maxRayDistance, groundMask))
         {
-            _spawn.transform.position = hit.point;
+            if (previewInstance == null)
+            {
+                previewInstance = Instantiate(selectedPrefab);
+                MakePreview(previewInstance);
+            }
+
+            previewInstance.SetActive(true);
+            previewInstance.transform.position = hit.point;
+
             if (Input.GetMouseButtonDown(0))
             {
+
+                Instantiate(selectedPrefab, hit.point, previewInstance.transform.rotation);
                 
-                Instantiate(_spawn, hit.point, _spawn.transform.rotation);
-                Debug.Log(11111);
-                _IsSpawned = false;
+                Destroy(previewInstance);
+                previewInstance = null;
+                selectedPrefab = null;
             }
         }
-    }
-   
+        else
+        {
 
-    public void BaseplateSpawn()
-    {
-        if (_IsSpawned == false)
-        {
-            _spawn = Instantiate(Baseplate);
-            _IsSpawned = true;
-        }
-       
-    }
-    public void StairsSpawn()
-    {
-        if (_IsSpawned == false)
-        {
-            _spawn = Instantiate(Baseplate);
-            _IsSpawned = true;
+            if (previewInstance != null) previewInstance.SetActive(false);
         }
     }
-    public void WallSpawn()
+
+    private void MakePreview(GameObject go)
     {
-        if (_IsSpawned == false)
-        {
-            _spawn = Instantiate(Baseplate);
-            _IsSpawned = true;
-        }
+
+        foreach (var c in go.GetComponentsInChildren<Collider>()) c.enabled = false;
+        foreach (var rb in go.GetComponentsInChildren<Rigidbody>()) Destroy(rb);
+
     }
-    public void WindowSpawn()
+    public void BaseplateSpawn() => SelectPrefab(baseplatePrefab);
+    public void StairsSpawn()    => SelectPrefab(stairsPrefab);
+    public void WallSpawn()      => SelectPrefab(wallPrefab);
+    public void WindowSpawn()    => SelectPrefab(windowPrefab);
+
+    private void SelectPrefab(GameObject prefab)
     {
-        if (_IsSpawned == false)
-        {
-            _spawn = Instantiate(Baseplate);
-            _IsSpawned = true;
-        }
+        selectedPrefab = prefab;
+        if (previewInstance != null) Destroy(previewInstance);
+        previewInstance = Instantiate(selectedPrefab);
+        MakePreview(previewInstance);
     }
-    
 }

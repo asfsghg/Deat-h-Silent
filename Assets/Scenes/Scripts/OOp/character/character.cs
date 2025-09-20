@@ -17,5 +17,11 @@ public class MonoCharacter : MonoBehaviour
         item item = handTransform.GetComponentInChildren<item>();
         Debug.Log("Display Hand for " );
     }
+
+    public virtual void Death()
+    {
+        Destroy(gameObject);
+    }
   
 }
+

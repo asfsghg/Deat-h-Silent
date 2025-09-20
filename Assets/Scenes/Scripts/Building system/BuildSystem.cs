@@ -49,6 +49,11 @@ public class BuildSystem : MonoBehaviour
                 previewInstance = null;
                 selectedPrefab = null;
             }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Debug.Log(selectedPrefab);
+            }
         }
         else
         {

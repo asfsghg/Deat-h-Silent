@@ -13,6 +13,8 @@ public class BuildSystem : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float maxRayDistance = 100f;
 
+    private float yRotation = 0f;
+
     private Camera mainCamera;
     private GameObject previewInstance;  
     private GameObject selectedPrefab;    
@@ -52,7 +54,9 @@ public class BuildSystem : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Debug.Log(selectedPrefab);
+                
+                yRotation += 90f;
+                previewInstance.transform.rotation = Quaternion.Euler(0, yRotation, 0);
             }
         }
         else

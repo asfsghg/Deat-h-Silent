@@ -5,8 +5,5 @@ using UnityEngine;
 public class _character : MonoCharacter
 {
 
-    protected override void DisplayHand()
-    {
-        Destroy(handTransform.GetComponentInChildren<Item>().gameObject);
-    }
+  
 }

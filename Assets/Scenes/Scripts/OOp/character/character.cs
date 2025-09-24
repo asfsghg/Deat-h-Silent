@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MonoCharacter : MonoBehaviour
 {
-    protected Health _health;
+
     [SerializeField] protected Transform handTransform;
     protected virtual void Start()
     {
-        _health = GetComponent<Health>();
+
         DisplayHand();
     }
 
@@ -18,10 +18,7 @@ public class MonoCharacter : MonoBehaviour
         Debug.Log("Display Hand for " );
     }
 
-    public virtual void Death()
-    {
-        Destroy(gameObject);
-    }
+    
   
 }
 

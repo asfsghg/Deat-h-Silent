@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private int damage;
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.TryGetComponent(out MonoCharacter character))
+        if (other.gameObject.TryGetComponent(out MonoDamagable health))
         {
-            character.Death();
+            health.TakeDamage(damage);
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Collections;
 using System;
 using UnityEngine.Events;
 
-public class Health : MonoBehaviour
+public class MonoDamagable : MonoBehaviour, IDamagable
 {
     [SerializeField] private int currentHealth = 110;
     [SerializeField] private int maxHealth = 100;
@@ -31,4 +31,11 @@ public class Health : MonoBehaviour
     }
     
     public int GetHealth() => currentHealth;
+
+    public void Heal(int heal)
+    {
+        currentHealth += heal;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        OnHealthChanged?.Invoke(currentHealth);
+    }
 }

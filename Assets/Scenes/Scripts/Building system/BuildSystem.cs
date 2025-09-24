@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Realtime;
 using UnityEngine;
 
 public class BuildSystem : MonoBehaviour
@@ -41,6 +42,8 @@ public class BuildSystem : MonoBehaviour
 
             previewInstance.SetActive(true);
             previewInstance.transform.position = hit.point;
+            if (hit.collider.TryGetComponent(out Build build))
+            
 
             if (Input.GetMouseButtonDown(0))
             {

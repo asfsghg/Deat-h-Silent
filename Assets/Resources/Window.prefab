@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 5095620620895011352}
   - component: {fileID: 8904678085126512035}
   - component: {fileID: 3840168777713209117}
+  - component: {fileID: 8221848282658852656}
   m_Layer: 0
   m_Name: Window
   m_TagString: Ground
@@ -183,6 +184,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.88562, y: 2.3955078, z: 1}
   m_Center: {x: 0.2934265, y: 5.680298, z: 0}
+--- !u!114 &8221848282658852656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7829470661012408281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df02a4cb38e02bc4aae69958739cd46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildPoints:
+  - {fileID: 2110064096365149342}
+  - {fileID: 9193680541841082193}
+  - {fileID: 4056883688218509878}
 --- !u!1001 &82273060510339455
 PrefabInstance:
   m_ObjectHideFlags: 0

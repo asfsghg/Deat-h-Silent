@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6291542576608178934}
   - component: {fileID: 5847120408162602780}
+  - component: {fileID: 3097780775006223304}
   m_Layer: 0
   m_Name: Baselate
   m_TagString: Ground
@@ -66,6 +67,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.4697876, y: 1.1103516, z: 4.3323975}
   m_Center: {x: 0.6614685, y: 1.7807617, z: 0.4081421}
+--- !u!114 &3097780775006223304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589133101503040355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df02a4cb38e02bc4aae69958739cd46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildPoints:
+  - {fileID: 3345678590613334771}
+  - {fileID: 2191460465370096674}
+  - {fileID: 1023921647222281664}
+  - {fileID: 1277871277828183178}
 --- !u!1 &2602723716890592462
 GameObject:
   m_ObjectHideFlags: 0

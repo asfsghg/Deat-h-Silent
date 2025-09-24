@@ -5,19 +5,40 @@ using UnityEngine.UI;
 
 public class hpp : MonoBehaviour
 {
-    Image healtBar;
+    public Image healtBar;
     public float maxHP = 100f;
     public float HP;
-    // Start is called before the first frame update
+    public Canvas deathCanvas;
+    private bool alreadyDied = false;
+
     void Start()
     {
         healtBar = GetComponent<Image>();
         HP = maxHP;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        healtBar.fillAmount = HP / maxHP ;
+        healtBar.fillAmount = HP / maxHP;
+
+        if (HP <= 0 && !alreadyDied)
+        {
+            alreadyDied = true;
+
+            // Показать канвас смерти, если указан
+            if (deathCanvas != null)
+            {
+                deathCanvas.gameObject.SetActive(true);
+                Time.timeScale = 0f;
+            }
+        }
+    }
+
+    // Вызываем этот метод из других скриптов, чтобы нанести урон
+    public void TakeDamage(float amount)
+    {
+        if (alreadyDied) return;
+        HP -= amount;
+        HP = Mathf.Clamp(HP, 0, maxHP);
     }
 }

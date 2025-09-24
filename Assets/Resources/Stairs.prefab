@@ -1,5 +1,89 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2666392977713693775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1306404006279324585}
+  - component: {fileID: 6160857282556278631}
+  m_Layer: 0
+  m_Name: HitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1306404006279324585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2666392977713693775}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.4979196, y: -0, z: -0, w: 0.8672232}
+  m_LocalPosition: {x: 0, y: 0, z: -2.127}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1772195848773015516}
+  m_LocalEulerAnglesHint: {x: 59.725, y: 0, z: 0}
+--- !u!65 &6160857282556278631
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2666392977713693775}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.270508, y: 5.855977, z: 0.502679}
+  m_Center: {x: -0.012786865, y: 2.9224188, z: -0.74678266}
+--- !u!1 &6080781040144673104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8897548057650869454}
+  m_Layer: 0
+  m_Name: Snap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8897548057650869454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6080781040144673104}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.4, z: 2.206}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1772195848773015516}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8932763848788887054
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +95,7 @@ GameObject:
   - component: {fileID: 1772195848773015516}
   m_Layer: 0
   m_Name: Stairs
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +110,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -439.33087, y: 1442.9559, z: 1461.1143}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7927682064830800403}
@@ -38,6 +122,8 @@ Transform:
   - {fileID: 7118282698750569338}
   - {fileID: 6063278389012285470}
   - {fileID: 259229234997824607}
+  - {fileID: 8897548057650869454}
+  - {fileID: 1306404006279324585}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1603480140152431767
@@ -62,6 +148,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wood (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5.574263
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.000000036060978
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 3.4131224
       objectReference: {fileID: 0}
     - target: {fileID: 2999478023616045599, guid: 3f0bb98af09987d49816056eea205e09,
         type: 3}
@@ -166,6 +272,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wood (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2999478023616045599, guid: 3f0bb98af09987d49816056eea205e09,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -268,6 +379,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wood (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5.7824764
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 2.8354726
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.29198372
       objectReference: {fileID: 0}
     - target: {fileID: 2999478023616045599, guid: 3f0bb98af09987d49816056eea205e09,
         type: 3}
@@ -372,6 +508,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wood (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 6.3853016
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 3.219994
+      objectReference: {fileID: 0}
     - target: {fileID: 2999478023616045599, guid: 3f0bb98af09987d49816056eea205e09,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -474,6 +625,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wood (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5.6041107
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.000000008999873
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 3.5421882
       objectReference: {fileID: 0}
     - target: {fileID: 2999478023616045599, guid: 3f0bb98af09987d49816056eea205e09,
         type: 3}
@@ -578,6 +749,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wood (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5.61585
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.000000024766788
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 3.3748376
+      objectReference: {fileID: 0}
     - target: {fileID: 2999478023616045599, guid: 3f0bb98af09987d49816056eea205e09,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -680,6 +871,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wood (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 6.4767385
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 3.2657125
       objectReference: {fileID: 0}
     - target: {fileID: 2999478023616045599, guid: 3f0bb98af09987d49816056eea205e09,
         type: 3}
@@ -784,6 +990,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wood (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5.556191
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.000000018718705
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 3.4390323
+      objectReference: {fileID: 0}
     - target: {fileID: 2999478023616045599, guid: 3f0bb98af09987d49816056eea205e09,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -886,6 +1112,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wood (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5.4605837
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.000000032015546
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688103570258710500, guid: 3f0bb98af09987d49816056eea205e09,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 3.456061
       objectReference: {fileID: 0}
     - target: {fileID: 2999478023616045599, guid: 3f0bb98af09987d49816056eea205e09,
         type: 3}

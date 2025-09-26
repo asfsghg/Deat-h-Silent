@@ -43,6 +43,9 @@ public class BuildSystem : MonoBehaviour
             previewInstance.SetActive(true);
             previewInstance.transform.position = hit.point;
             if (hit.collider.TryGetComponent(out Build build))
+            {
+                build.SetBuild(transform.position);
+            }
             
 
             if (Input.GetMouseButtonDown(0))

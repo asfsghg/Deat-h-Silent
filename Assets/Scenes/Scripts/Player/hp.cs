@@ -37,6 +37,8 @@ public class hpp : MonoBehaviour
     // Вызываем этот метод из других скриптов, чтобы нанести урон
     public void TakeDamage(float amount)
     {
+        healtBar.fillAmount = HP / maxHP;
+
         if (alreadyDied) return;
         HP -= amount;
         HP = Mathf.Clamp(HP, 0, maxHP);

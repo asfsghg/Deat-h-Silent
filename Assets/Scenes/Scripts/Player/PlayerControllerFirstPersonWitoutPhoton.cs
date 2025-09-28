@@ -14,7 +14,7 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false; 
+
     }
 
     private void Update()

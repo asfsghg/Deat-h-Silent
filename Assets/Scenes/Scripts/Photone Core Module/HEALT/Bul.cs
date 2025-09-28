@@ -7,9 +7,9 @@ public class Bul : MonoBehaviour
     [SerializeField] private int damage;
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.TryGetComponent(out MonoDamagable health))
+        //if (other.gameObject.TryGetComponent(out MonoDamagable health))
         {
-            health.TakeDamage(damage);
+            //health.TakeDamage(damage);
         }
     }
 }

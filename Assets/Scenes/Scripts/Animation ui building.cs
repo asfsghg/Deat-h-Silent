@@ -46,7 +46,7 @@ public class UIPanelAnimator : MonoBehaviour
     IEnumerator ShowPanel()
     {
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true; 
+
         float time = 0f;
 
         Vector2 startPos = panel.anchoredPosition;
@@ -72,7 +72,7 @@ public class UIPanelAnimator : MonoBehaviour
     IEnumerator HidePanel()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false; 
+
         float time = 0f;
 
         Vector2 startPos = panel.anchoredPosition;

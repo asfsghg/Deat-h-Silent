@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
+
 
 public class Build : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class Build : MonoBehaviour
 
     public Transform SetBuild(Vector3 position)
     {
-        Transform currentBuildPoint = null;
+         Transform currentBuildPoint = null;
         float minDistance = Mathf.Infinity;
         foreach (var point in buildPoints)
         {
@@ -22,7 +22,11 @@ public class Build : MonoBehaviour
                 
             }
         }
-        Debug.Log("Point " + currentBuildPoint.name + " is " + currentBuildPoint.GetComponent<SpriteRenderer>().sprite);
+        if (currentBuildPoint == null)
+        {
+            return null;
+        }
+      
         return currentBuildPoint;
     }
 

@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
+        Cursor.visible = true;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         cam.transform.Translate(Vector3.right * horizontal);

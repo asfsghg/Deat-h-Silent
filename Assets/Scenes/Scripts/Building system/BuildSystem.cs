@@ -34,6 +34,8 @@ public class BuildSystem : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, maxRayDistance, groundMask))
         {
+            Vector3 spawnPoint = Vector3.zero;
+            
             if (previewInstance == null)
             {
                 previewInstance = Instantiate(selectedPrefab);
@@ -41,10 +43,17 @@ public class BuildSystem : MonoBehaviour
             }
 
             previewInstance.SetActive(true);
-            previewInstance.transform.position = hit.point;
+            //previewInstance.transform.position = hit.point;
             if (hit.collider.TryGetComponent(out Build build))
             {
-                build.SetBuild(transform.position);
+                Debug.Log("Point find");
+                //build.SetBuild(transform.position);
+                var anchorPoint = build.SetBuild(hit.point);
+                previewInstance.transform.position = anchorPoint.position;
+            }
+            else
+            {
+                previewInstance.transform.position = hit.point;
             }
             
 

@@ -1,35 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class Build : MonoBehaviour
 {
     [SerializeField] public Transform[] buildPoints;
 
-    public void SetBuild(Vector3 position)
+    public Transform SetBuild(Vector3 position)
     {
-        if (buildPoints == null || buildPoints.Length == 0) return;
-        Transform nearestPoint = null;
+        Transform currentBuildPoint = null;
         float minDistance = Mathf.Infinity;
-        Debug.Log("Ближайшая точка: " + nearestPoint.name);
-        foreach (Transform point in buildPoints)
+        foreach (var point in buildPoints)
         {
-            Debug.Log("Ближайшая точка: " + nearestPoint.name);
-            float distance = Vector3.Distance(position, point.position);
+            Vector3 worldPos = point.position;
+            float distance = Vector3.Distance(worldPos, position);
             if (distance < minDistance)
             {
-                Debug.Log("Ближайшая точка: " + nearestPoint.name);
+                currentBuildPoint = point;
                 minDistance = distance;
-                nearestPoint = point;
+                
             }
         }
-        
-        if (nearestPoint != null)
-        {
-            Debug.Log("Ближайшая точка: " + nearestPoint.name);
-            
-        }
-        
+        Debug.Log("Point " + currentBuildPoint.name + " is " + currentBuildPoint.GetComponent<SpriteRenderer>().sprite);
+        return currentBuildPoint;
     }
 
 }

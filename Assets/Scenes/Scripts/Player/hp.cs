@@ -25,7 +25,7 @@ public class hpp : MonoBehaviour
         {
             alreadyDied = true;
 
-            // Показать канвас смерти, если указан
+            
             if (deathCanvas != null)
             {
                 deathCanvas.gameObject.SetActive(true);
@@ -34,7 +34,7 @@ public class hpp : MonoBehaviour
         }
     }
 
-    // Вызываем этот метод из других скриптов, чтобы нанести урон
+   
     public void TakeDamage(float amount)
     {
         healtBar.fillAmount = HP / maxHP;

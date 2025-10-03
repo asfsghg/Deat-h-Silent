@@ -22,7 +22,7 @@ namespace Photon.Chat.Demo
         public Text Description;
         public bool WizardOpenedOnce;   // avoid opening the wizard again and again
 
-        // TODO: maybe this can run on Start(), not on Update()?!
+        // TODO: maybe this can AnimalRUN on Start(), not on Update()?!
         public void Update()
         {
             bool showWarning = false;

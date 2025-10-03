@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Atttttac : MonoBehaviour
+public class AnimalRUN : MonoBehaviour
 {
     public float detectionRange;
     public Transform player;
@@ -14,39 +14,32 @@ public class Atttttac : MonoBehaviour
 
     private float lastAttackTime;
 
-    void Start()
-    {
-        
-    }
-
-    
     void Update()
     {
         if (player == null) return;
 
-       
         float distance = Vector3.Distance(transform.position, player.position);
 
         if (distance <= detectionRange)
         {
-           
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                player.position,
-                moveSpeed * Time.deltaTime);
 
-           
-            transform.LookAt(player);
+            Vector3 direction = (transform.position - player.position).normalized;
 
-            
+
+            transform.position += direction * moveSpeed * Time.deltaTime;
+
+
+            transform.rotation = Quaternion.LookRotation(direction);
+
+
             if (distance <= attackRange && Time.time > lastAttackTime + attackCooldown)
             {
                 Atack();
                 lastAttackTime = Time.time;
             }
         }
-        
     }
+
     void Atack()
     {
         hpp hp = player.GetComponent<hpp>();
@@ -57,9 +50,7 @@ public class Atttttac : MonoBehaviour
             {
                 deathCanvas.gameObject.SetActive(true);
                 Time.timeScale = 0f;
-            } 
-
+            }
         }
     }
-
 }

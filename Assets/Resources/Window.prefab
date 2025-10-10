@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 8221848282658852656}
   m_Layer: 0
   m_Name: Window
-  m_TagString: Ground
+  m_TagString: NoBaseplate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

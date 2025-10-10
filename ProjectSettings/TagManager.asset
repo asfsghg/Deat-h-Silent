@@ -8,6 +8,8 @@ TagManager:
   - isBuilding
   - Apple
   - Weapon
+  - Baseplate
+  - NoBaseplate
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - Build
   - Water
   - UI
-  - 
+  - Baseplate
   - 
   - 
   - 

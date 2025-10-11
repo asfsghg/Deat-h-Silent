@@ -14,6 +14,8 @@ public class BuildSystem : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float maxRayDistance = 100f;
 
+    
+
     private Camera mainCamera;
     private GameObject previewInstance;
     private GameObject selectedPrefab;
@@ -39,7 +41,7 @@ public class BuildSystem : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, maxRayDistance, groundMask))
         {
-            // Создание превью
+ 
             if (previewInstance == null)
             {
                 previewInstance = Instantiate(selectedPrefab);
@@ -47,29 +49,30 @@ public class BuildSystem : MonoBehaviour
             }
 
             Transform targetPoint = null;
+            
 
 
-            if (hit.collider.CompareTag("NoBaseplate") && hit.collider.TryGetComponent(out Build build))
+            if (hit.collider.TryGetComponent(out Build build))
             {
-                targetPoint = build.SetBuild(hit.point);
+      
+                if (previewInstance.CompareTag("NoBaseplate"))
+                {
+                    targetPoint = build.SetBuild(hit.point);
+                }
+                else
+                {
+                    targetPoint = build.SetBuildWall(hit.point);
+                }
+
                 if (targetPoint != null)
                 {
-                     
                     previewInstance.transform.position = targetPoint.position;
-                   // previewInstance.transform.rotation;
+                    previewInstance.transform.rotation = targetPoint.rotation;
                 }
             }
 
-            else if (hit.collider.CompareTag("Ground") && hit.collider.TryGetComponent(out BuildWall buildWall))
-            {
-                targetPoint = buildWall.SetBuild(hit.point);
-                if (targetPoint != null)
-                {
-                    
-                        previewInstance.transform.position = targetPoint.position;
-                  //  previewInstance.transform.rotation;
-                }
-            }
+          
+            
             else
             {
 
@@ -99,7 +102,7 @@ public class BuildSystem : MonoBehaviour
         }
     }
 
-    // Делает объект превью (без физики и коллайдеров)
+
     private void MakePreview(GameObject go)
     {
         foreach (var c in go.GetComponentsInChildren<Collider>())
@@ -111,11 +114,16 @@ public class BuildSystem : MonoBehaviour
         foreach (var r in go.GetComponentsInChildren<Renderer>())
         {
             foreach (var mat in r.materials)
-                mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, 0.5f);
+            {
+                Material previewMat = new Material(mat);
+                previewMat.color = new Color(0f, 1f, 0f, 0.5f); 
+                r.material = previewMat;
+            }
         }
     }
 
-    // Методы для UI
+
+
     public void BaseplateSpawn() => SelectPrefab(baseplatePrefab);
     public void StairsSpawn() => SelectPrefab(stairsPrefab);
     public void WallSpawn() => SelectPrefab(wallPrefab);

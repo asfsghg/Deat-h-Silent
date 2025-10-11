@@ -49,7 +49,7 @@ public class DamageManager : MonoBehaviour
     }
     void Atack()
     {
-        HEALT hp = player.GetComponent<HEALT>();
+        MonoDamagable hp = player.GetComponent<MonoDamagable>();
         if (hp != null)
         {
             hp.TakeDamage(damage);

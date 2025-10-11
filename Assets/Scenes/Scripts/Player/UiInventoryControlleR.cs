@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class UiInventoryControllerQWE : MonoBehaviour
+public class UiInventoryControlleR : MonoBehaviour
 {
     [SerializeField] private Image[] slotIcons;
     [SerializeField] private Sprite appleSprite;  

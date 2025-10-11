@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimalRUNanemi : MonoBehaviour
+public class AnimalRunAnemi : MonoBehaviour
 {
     public float detectionRange;
     public Transform player;

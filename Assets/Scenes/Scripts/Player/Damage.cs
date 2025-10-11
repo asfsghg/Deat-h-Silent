@@ -12,7 +12,7 @@ public class Damage : MonoBehaviour
         
         if (collision.collider.CompareTag(playerTag))
         {
-            hpp playerHP = collision.collider.GetComponent<hpp>();
+            healtManager playerHP = collision.collider.GetComponent<healtManager>();
             if (playerHP != null)
             {
                 playerHP.HP -= damage;
@@ -24,7 +24,7 @@ public class Damage : MonoBehaviour
     {
         if (other.CompareTag(playerTag))
         {
-            hpp playerHP = other.GetComponent<hpp>();
+            healtManager playerHP = other.GetComponent<healtManager>();
             if (playerHP != null)
             {
                 playerHP.HP -= damage;

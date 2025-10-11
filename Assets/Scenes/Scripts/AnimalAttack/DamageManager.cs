@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Atttttac : MonoBehaviour
+public class DamageManager : MonoBehaviour
 {
     public float detectionRange;
     public Transform player;
@@ -49,7 +49,7 @@ public class Atttttac : MonoBehaviour
     }
     void Atack()
     {
-        hpp hp = player.GetComponent<hpp>();
+        HEALT hp = player.GetComponent<HEALT>();
         if (hp != null)
         {
             hp.TakeDamage(damage);

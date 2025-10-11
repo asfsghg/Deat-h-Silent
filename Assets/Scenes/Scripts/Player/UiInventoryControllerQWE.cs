@@ -13,7 +13,7 @@ public class UiInventoryControllerQWE : MonoBehaviour
     [SerializeField] private Sprite emptyIcon;
 
     void Update()
-    {
+    { 
         Transform handPoint = GameObject.Find("HandPoint")?.transform;
 
         if (handPoint != null && handPoint.childCount > 0)

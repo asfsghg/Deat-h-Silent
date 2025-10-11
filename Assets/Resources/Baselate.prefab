@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6291542576608178934}
   - component: {fileID: 5847120408162602780}
   - component: {fileID: 3097780775006223304}
-  - component: {fileID: 538876863324353651}
   m_Layer: 3
   m_Name: Baselate
   m_TagString: Ground
@@ -89,19 +88,7 @@ MonoBehaviour:
   - {fileID: 2191460465370096674}
   - {fileID: 1023921647222281664}
   - {fileID: 1277871277828183178}
---- !u!114 &538876863324353651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 589133101503040355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc8ee7f1d01098548acd559344460eb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildPointsForBaseplate:
+  buildWall:
   - {fileID: 5058690875436044780}
   - {fileID: 3178090858531786698}
   - {fileID: 8540605927634080606}
@@ -118,7 +105,7 @@ GameObject:
   - component: {fileID: 7202699437610936710}
   m_Layer: 3
   m_Name: SnapPoint (1)
-  m_TagString: Untagged
+  m_TagString: NoBaseplate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 2602723716890592462}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2999878, y: 0, z: 2.1899414}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -171,7 +158,7 @@ GameObject:
   - component: {fileID: 4548248793016281332}
   m_Layer: 3
   m_Name: Snap2
-  m_TagString: Untagged
+  m_TagString: Baseplate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,7 +211,7 @@ GameObject:
   - component: {fileID: 9062774299017751709}
   m_Layer: 3
   m_Name: Snap2
-  m_TagString: Untagged
+  m_TagString: Baseplate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,7 +264,7 @@ GameObject:
   - component: {fileID: 5440113669719457405}
   m_Layer: 3
   m_Name: Snap2
-  m_TagString: Untagged
+  m_TagString: Baseplate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,7 +317,7 @@ GameObject:
   - component: {fileID: 3579828172569592131}
   m_Layer: 3
   m_Name: SnapPoint
-  m_TagString: Untagged
+  m_TagString: NoBaseplate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -344,7 +331,7 @@ Transform:
   m_GameObject: {fileID: 5992075524032040780}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 0, z: -1.81}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -383,7 +370,7 @@ GameObject:
   - component: {fileID: 6561111355023260280}
   m_Layer: 3
   m_Name: SnapPoint (2)
-  m_TagString: Untagged
+  m_TagString: NoBaseplate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -397,7 +384,7 @@ Transform:
   m_GameObject: {fileID: 6928362177967558031}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.7000122, y: 0, z: 0.1899414}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -436,7 +423,7 @@ GameObject:
   - component: {fileID: 5767687250265220859}
   m_Layer: 3
   m_Name: Snap2
-  m_TagString: Untagged
+  m_TagString: Baseplate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -572,7 +559,7 @@ GameObject:
   - component: {fileID: 1569895400923332650}
   m_Layer: 3
   m_Name: SnapPoint (3)
-  m_TagString: Untagged
+  m_TagString: NoBaseplate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -586,7 +573,7 @@ Transform:
   m_GameObject: {fileID: 9193086082260362013}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.2999878, y: 0, z: 0.1899414}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

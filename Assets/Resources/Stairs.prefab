@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1306404006279324585}
   - component: {fileID: 6160857282556278631}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,6 +53,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.270508, y: 5.855977, z: 0.502679}
   m_Center: {x: -0.012786865, y: 2.9224188, z: -0.74678266}
+--- !u!1 &5359777659800571229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369219979339531411}
+  - component: {fileID: 4866615565382442787}
+  m_Layer: 3
+  m_Name: Snap (1)
+  m_TagString: NoBaseplate
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1369219979339531411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5359777659800571229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.5, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1772195848773015516}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4866615565382442787
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5359777659800571229}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6080781040144673104
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,9 +115,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8897548057650869454}
-  m_Layer: 0
+  - component: {fileID: 7529408254292353671}
+  m_Layer: 3
   m_Name: Snap
-  m_TagString: Untagged
+  m_TagString: Baseplate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,12 +132,33 @@ Transform:
   m_GameObject: {fileID: 6080781040144673104}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.4, z: 2.206}
+  m_LocalPosition: {x: 0, y: 4.5, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1772195848773015516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7529408254292353671
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6080781040144673104}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8932763848788887054
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,9 +169,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1772195848773015516}
   - component: {fileID: 4007126055907150591}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stairs
-  m_TagString: Ground
+  m_TagString: Baseplate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,6 +199,7 @@ Transform:
   - {fileID: 6063278389012285470}
   - {fileID: 259229234997824607}
   - {fileID: 8897548057650869454}
+  - {fileID: 1369219979339531411}
   - {fileID: 1306404006279324585}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -141,6 +217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildPoints:
   - {fileID: 8897548057650869454}
+  buildWall:
+  - {fileID: 1369219979339531411}
 --- !u!1001 &1603480140152431767
 PrefabInstance:
   m_ObjectHideFlags: 0

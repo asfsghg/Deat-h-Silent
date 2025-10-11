@@ -6,6 +6,7 @@ using UnityEngine;
 public class Build : MonoBehaviour
 {
     [SerializeField] public Transform[] buildPoints;
+    [SerializeField] public Transform[] buildWall;
 
     public Transform SetBuild(Vector3 position)
     {
@@ -28,6 +29,29 @@ public class Build : MonoBehaviour
         }
       
         return currentBuildPoint;
+    }
+
+    public Transform SetBuildWall(Vector3 position)
+    {
+        Transform currentBuildPoint1 = null;
+        float minDistance1 = Mathf.Infinity;
+        foreach (var point in buildWall)
+        {
+            Vector3 worldPos1 = point.position;
+            float distance1 = Vector3.Distance(worldPos1, position);
+            if (distance1 < minDistance1)
+            {
+                currentBuildPoint1 = point;
+                minDistance1 = distance1;
+                
+            }
+        }
+        if (currentBuildPoint1 == null)
+        {
+            return null;
+        }
+      
+        return currentBuildPoint1;
     }
 
 }

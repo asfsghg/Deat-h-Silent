@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimalRUN : MonoBehaviour
+public class AnimalRUNanemi : MonoBehaviour
 {
     public float detectionRange;
     public Transform player;
@@ -42,7 +42,7 @@ public class AnimalRUN : MonoBehaviour
 
     void Atack()
     {
-        hpp hp = player.GetComponent<hpp>();
+        healtManager hp = player.GetComponent<healtManager>();
         if (hp != null)
         {
             hp.TakeDamage(damage);

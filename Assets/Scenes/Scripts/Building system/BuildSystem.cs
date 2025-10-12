@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class BuildSystem : MonoBehaviour
 {
-    [Header("Prefabs")]
+
     [SerializeField] private GameObject baseplatePrefab;
     [SerializeField] private GameObject stairsPrefab;
     [SerializeField] private GameObject wallPrefab;
     [SerializeField] private GameObject windowPrefab;
 
-    [Header("Raycast Settings")]
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float maxRayDistance = 100f;
 

@@ -6,22 +6,22 @@ using UnityEngine.UI;
 public class healtManager : MonoBehaviour
 {
     public Image healtBar;
-    public float maxHP = 100f;
-    public float HP;
+    public float maxHealt = 100f;
+    public float Healt;
     public Canvas deathCanvas;
     private bool alreadyDied = false;
 
     void Start()
     {
         healtBar = GetComponent<Image>();
-        HP = maxHP;
+        Healt = maxHealt;
     }
 
     void Update()
     {
-       // healtBar.fillAmount = HP / maxHP;
+       // healtBar.fillAmount = Healt / maxHealt;
 
-        if (HP <= 0 && !alreadyDied)
+        if (Healt <= 0 && !alreadyDied)
         {
             alreadyDied = true;
 
@@ -37,10 +37,10 @@ public class healtManager : MonoBehaviour
    
     public void TakeDamage(float amount)
     {
-        healtBar.fillAmount = HP / maxHP;
+        healtBar.fillAmount = Healt / maxHealt;
 
         if (alreadyDied) return;
-        HP -= amount;
-        HP = Mathf.Clamp(HP, 0, maxHP);
+        Healt -= amount;
+        Healt = Mathf.Clamp(Healt, 0, maxHealt);
     }
 }

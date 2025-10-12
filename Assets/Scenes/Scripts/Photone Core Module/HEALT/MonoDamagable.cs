@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HEALT : MonoBehaviour
+public class MonoDamagable : MonoBehaviour
 {
     [SerializeField] private int currentHealth = 110;
     [SerializeField] private int maxHealth = 100;

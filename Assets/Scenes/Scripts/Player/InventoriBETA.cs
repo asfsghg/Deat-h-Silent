@@ -7,7 +7,7 @@ public class InventoriBETA : MonoBehaviour
 {
     
     public GameObject playerCamera;
-    public float pickDistance = 15f;
+    public float pickDistance = 20f;
 
     
     public KeyCode pickKey = KeyCode.F;
@@ -59,7 +59,7 @@ public class InventoriBETA : MonoBehaviour
            out hit, pickDistance))
         {
            
-            if (hit.transform.CompareTag("Apple") || hit.transform.CompareTag("Weapon"))
+            if (hit.transform.CompareTag("Apple") || hit.transform.CompareTag("Weapon") || hit.transform.CompareTag("Gun"))
             {
                 GameObject item = hit.transform.gameObject;
 
@@ -140,6 +140,7 @@ public class InventoriBETA : MonoBehaviour
             Debug.LogWarning($"{currentItem.name}");
         }
     }
+   
 }
 
 

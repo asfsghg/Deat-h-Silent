@@ -15,7 +15,7 @@ public class Damage : MonoBehaviour
             healtManager playerHP = collision.collider.GetComponent<healtManager>();
             if (playerHP != null)
             {
-                playerHP.HP -= damage;
+                playerHP.Healt -= damage;
             }
         }
     }
@@ -27,7 +27,7 @@ public class Damage : MonoBehaviour
             healtManager playerHP = other.GetComponent<healtManager>();
             if (playerHP != null)
             {
-                playerHP.HP -= damage;
+                playerHP.Healt -= damage;
             }
         }
     }

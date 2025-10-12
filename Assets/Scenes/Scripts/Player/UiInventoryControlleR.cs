@@ -40,7 +40,7 @@ public class UiInventoryControlleR : MonoBehaviour
                 slotIcons[slotIndex].sprite = appleSprite;
             else if (child.CompareTag("App")) 
                 slotIcons[slotIndex].sprite = appSprite;
-            else if (child.CompareTag("Weapon"))
+            else if (child.CompareTag("Gun"))
                 slotIcons[slotIndex].sprite = weaponSprite;
             else
                 slotIcons[slotIndex].sprite = emptyIcon;

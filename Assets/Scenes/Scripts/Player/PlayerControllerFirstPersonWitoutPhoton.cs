@@ -10,7 +10,8 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
     public float jumpForce = 5f;
     
     [SerializeField] private float bobAmplitude = 0.05f; 
-    [SerializeField] private float bobFrequency = 6f;   
+    [SerializeField] private float bobFrequency = 6f;
+    [SerializeField] private Transform Head;
     private Vector3 cameraStartPos;
 
     private Rigidbody rb;
@@ -29,6 +30,7 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+       
 
         Vector3 move = transform.forward * vertical + transform.right * horizontal;
         move.Normalize();
@@ -36,6 +38,12 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
         Vector3 newVelocity = move * moveSpeed;
         newVelocity.y = rb.velocity.y;
         rb.velocity = newVelocity;
+        
+        Vector3 headEuler = Head.localEulerAngles;
+        headEuler.x = mainCamera.transform.localEulerAngles.x;
+        Head.localEulerAngles = headEuler;
+
+
 
         if (Input.GetButtonDown("Jump") && !_isJumping)
         {
@@ -51,6 +59,16 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
         else
         {
             mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 95, Time.deltaTime * 5f);
+        }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            moveSpeed = 10f;
+            jumpForce = 7f;
+        }
+        else
+        {
+            moveSpeed = 5f;
+            jumpForce = 4f;
         }
 
 

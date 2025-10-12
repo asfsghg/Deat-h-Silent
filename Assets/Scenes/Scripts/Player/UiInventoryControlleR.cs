@@ -10,9 +10,9 @@ public class UiInventoryControlleR : MonoBehaviour
 {
     [SerializeField] private Image[] slotIcons;
 
-    [Header("Icons")]
+    
     [SerializeField] private Sprite appleSprite;
-    [SerializeField] private Sprite appSprite; // другой предмет
+    [SerializeField] private Sprite appSprite; 
     [SerializeField] private Sprite weaponSprite;
 
     [SerializeField] private Sprite emptyIcon;
@@ -34,11 +34,11 @@ public class UiInventoryControlleR : MonoBehaviour
 
         foreach (Transform child in handPoint)
         {
-            if (slotIndex >= slotIcons.Length) break; // чтобы не выйти за пределы массива
+            if (slotIndex >= slotIcons.Length) break; 
 
             if (child.CompareTag("Apple"))
                 slotIcons[slotIndex].sprite = appleSprite;
-            else if (child.CompareTag("App")) // твой второй предмет
+            else if (child.CompareTag("App")) 
                 slotIcons[slotIndex].sprite = appSprite;
             else if (child.CompareTag("Weapon"))
                 slotIcons[slotIndex].sprite = weaponSprite;

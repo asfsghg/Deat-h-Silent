@@ -16,13 +16,20 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
 
     private Rigidbody rb;
     private bool _isJumping = false;
+    
     private float bobTimer;
+    
+    private Animator _animator;
+    
 
-    private void Start()
+    private void Awake()
     {
+        _animator = GetComponent<Animator>();
+        
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         cameraStartPos = mainCamera.transform.localPosition;
+        
     }
 
     private void Update()
@@ -30,7 +37,7 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-       
+        _animator.SetFloat("Speed", vertical);
 
         Vector3 move = transform.forward * vertical + transform.right * horizontal;
         move.Normalize();
@@ -44,11 +51,13 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
         Head.localEulerAngles = headEuler;
 
 
-
+  
         if (Input.GetButtonDown("Jump") && !_isJumping)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             _isJumping = true;
+            _animator.SetTrigger("IsGround");
+            _animator.SetTrigger("Jump");
         }
 
 
@@ -62,13 +71,14 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            moveSpeed = 10f;
-            jumpForce = 7f;
+            moveSpeed = 5f;
+            _animator.SetTrigger("IsRunning");
         }
         else
         {
-            moveSpeed = 5f;
-            jumpForce = 4f;
+            moveSpeed = 2f;
+            _animator.SetTrigger("IsRunning");
+ 
         }
 
 
@@ -85,11 +95,15 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
             mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, cameraStartPos, Time.deltaTime * 5f);
         }
     }
+    
+   
+
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
+            _animator.ResetTrigger("IsGround");
             _isJumping = false;
         }
     }

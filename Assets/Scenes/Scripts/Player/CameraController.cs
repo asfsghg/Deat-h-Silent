@@ -6,6 +6,7 @@ public class Camera_Controller : MonoBehaviour
 {
     public float sensitivity = 2f;
     public float maxYAngle = 80f;
+
     
     private float _rotationX = 0f;
     
@@ -19,5 +20,8 @@ public class Camera_Controller : MonoBehaviour
         _rotationX -= mouseY * sensitivity;
         _rotationX = Mathf.Clamp(_rotationX, -maxYAngle, maxYAngle);
         transform.localRotation = Quaternion.Euler(_rotationX, 0f, 0f);
+
+
+
     }
 }

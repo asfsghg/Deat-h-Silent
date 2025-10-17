@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0
   m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.4031684, g: 0.44919676, b: 0.5660378, a: 1}
+  m_SubtractiveShadowColor: {r: 0.41553932, g: 0.45406532, b: 0.5471698, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.407
   m_FlareStrength: 1
@@ -1926,7 +1926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1342508621}
-  moveSpeed: 4
+  moveSpeed: 2
   jumpForce: 4
   bobAmplitude: 0.05
   bobFrequency: 20
@@ -1951,9 +1951,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1862793
-  m_Height: 1.913208
+  m_Height: 1.7816162
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8143921, z: 0.02722168}
+  m_Center: {x: 0, y: 0.880188, z: 0.02722168}
 --- !u!4 &946114037 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2369712856593335393, guid: 730000931cae1454c8083362445e8f75,

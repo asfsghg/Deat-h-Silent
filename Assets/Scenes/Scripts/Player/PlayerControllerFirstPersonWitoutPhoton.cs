@@ -4,25 +4,33 @@ using UnityEngine;
 
 public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
 {
-
+    //камера
     [SerializeField] private Camera mainCamera;
+    private Vector3 cameraStartPos;
+    [SerializeField] private float bobAmplitude = 0.05f; 
+    [SerializeField] private float bobFrequency = 6f;
+    private float bobTimer;
+    
+    //характеристика гравця
+    
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
     
-    [SerializeField] private float bobAmplitude = 0.05f; 
-    [SerializeField] private float bobFrequency = 6f;
+    //голова
+    
     [SerializeField] private Transform Head;
-    private Vector3 cameraStartPos;
 
+//інше
+    
     private Rigidbody rb;
     private bool _isJumping = false;
-    
-    private float bobTimer;
+
+    //аниматор
     
     private Animator _animator;
     
 
-    private void Awake()
+    private void Awake() //посилання на компоненти
     {
         _animator = GetComponent<Animator>();
         
@@ -32,7 +40,7 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
         
     }
 
-    private void Update()
+    private void Update() // система руху
     {
 
         float horizontal = Input.GetAxis("Horizontal");
@@ -52,16 +60,16 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
 
 
   
-        if (Input.GetButtonDown("Jump") && !_isJumping)
+        if (Input.GetButtonDown("Jump") && !_isJumping) //стрибок
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             _isJumping = true;
-            _animator.SetTrigger("IsGround");
+            _animator.ResetTrigger("IsGround");
             _animator.SetTrigger("Jump");
         }
 
 
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKey(KeyCode.C)) //сближення камери
         {
             mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 20, Time.deltaTime * 10f);
         }
@@ -69,7 +77,7 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
         {
             mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 95, Time.deltaTime * 5f);
         }
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift)) //біг
         {
             moveSpeed = 5f;
             _animator.SetTrigger("IsRunning");
@@ -77,7 +85,7 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
         else
         {
             moveSpeed = 2f;
-            _animator.SetTrigger("IsRunning");
+            _animator.ResetTrigger("IsRunning");
  
         }
 
@@ -96,15 +104,25 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
         }
     }
     
-   
+    private void LateUpdate()
+    {
+        if (Head != null && mainCamera != null)
+        {
+            Vector3 euler = Head.localEulerAngles;
+            euler.x = mainCamera.transform.localEulerAngles.x;
+            
+
+            Head.localEulerAngles = euler;
+        }
+    }
 
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            _animator.ResetTrigger("IsGround");
+            _animator.SetTrigger("IsGround");
             _isJumping = false;
         }
     }
-}
+} 

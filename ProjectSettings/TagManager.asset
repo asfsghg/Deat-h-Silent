@@ -10,6 +10,8 @@ TagManager:
   - Weapon
   - Baseplate
   - NoBaseplate
+  - playerr
+  - Gun
   layers:
   - Default
   - TransparentFX

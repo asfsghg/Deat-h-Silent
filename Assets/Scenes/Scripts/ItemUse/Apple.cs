@@ -1,0 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Apple : MonoBehaviour, IUsable
+{
+    public void Use()
+    {
+        Debug.Log(" съел яблоко ");
+       
+        Destroy(gameObject);
+    }
+
+}

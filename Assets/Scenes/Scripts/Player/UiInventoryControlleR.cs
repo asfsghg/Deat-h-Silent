@@ -21,7 +21,7 @@ public class UiInventoryControlleR : MonoBehaviour
     {
         Transform handPoint = GameObject.Find("HandPoint")?.transform;
 
-        // Очистить все иконки перед обновлением
+        
         for (int i = 0; i < slotIcons.Length; i++)
         {
             slotIcons[i].sprite = emptyIcon;

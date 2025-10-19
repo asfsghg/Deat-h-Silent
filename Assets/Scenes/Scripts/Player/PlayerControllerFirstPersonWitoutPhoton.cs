@@ -75,7 +75,7 @@ public class PlayerControllerFirstPersonWithoutPhoton : MonoBehaviour
         }
         else
         {
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 95, Time.deltaTime * 5f);
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, Time.deltaTime * 5f);
         }
         if (Input.GetKey(KeyCode.LeftShift)) //біг
         {

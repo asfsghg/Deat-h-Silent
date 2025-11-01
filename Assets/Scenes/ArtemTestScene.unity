@@ -2841,6 +2841,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Axe
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 22e89ebe074ca134fa85e8ff9b1e7e47,
+        type: 3}
+      propertyPath: m_TagString
+      value: DestroyedTree
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22038,7 +22043,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 50
+  far clip plane: 49.64
   field of view: 60.000004
   orthographic: 0
   orthographic size: 1
@@ -22771,6 +22776,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 25.13916, y: 79.84082, z: 18.198242}
   m_Center: {x: -1.0943604, y: 39.42041, z: -1.6015625}
+--- !u!114 &1697264226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697264222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6bff8c7de1e3f8449368e02e4535f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1783276294
 GameObject:
   m_ObjectHideFlags: 0
@@ -22897,13 +22914,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784738408}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -301.96713, y: 1438.6273, z: 1548.373}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.1682663, y: -3.3, z: 30.200195}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1952141593}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1697264223}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1804186369
 Mesh:
@@ -23980,7 +23997,7 @@ GameObject:
   - component: {fileID: 1952141595}
   - component: {fileID: 1952141594}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Particle Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23995,7 +24012,7 @@ Transform:
   m_GameObject: {fileID: 1952141592}
   serializedVersion: 2
   m_LocalRotation: {x: 0.6411536, y: -0, z: -0, w: 0.76741254}
-  m_LocalPosition: {x: 0, y: 2.84, z: -3.07}
+  m_LocalPosition: {x: 0, y: 3.097, z: -1.648}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24022,7 +24039,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  - {fileID: 2100000, guid: d9fc32250c414d449a6f31cb0296fe9b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24043,7 +24060,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 0
+  m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -24064,7 +24081,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -24081,7 +24098,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952141592}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 0.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -24263,7 +24280,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.3962264, g: 0.20323257, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -29183,7 +29200,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -29429,7 +29446,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3316952430315135878, guid: dd9e3fb0b778c3147b90b726597d8dcf,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1784738409}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2685269103685220668, guid: dd9e3fb0b778c3147b90b726597d8dcf,
         type: 3}
@@ -29439,6 +29460,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1697264225}
+    - targetCorrespondingSourceObject: {fileID: 2685269103685220668, guid: dd9e3fb0b778c3147b90b726597d8dcf,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1697264226}
   m_SourcePrefab: {fileID: 100100000, guid: dd9e3fb0b778c3147b90b726597d8dcf, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -29477,4 +29502,3 @@ SceneRoots:
   - {fileID: 793276139}
   - {fileID: 1989662685}
   - {fileID: 436212786}
-  - {fileID: 1784738409}

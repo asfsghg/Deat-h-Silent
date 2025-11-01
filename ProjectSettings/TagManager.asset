@@ -12,6 +12,7 @@ TagManager:
   - NoBaseplate
   - playerr
   - Gun
+  - DestroyedTree
   layers:
   - Default
   - TransparentFX

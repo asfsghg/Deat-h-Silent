@@ -34,7 +34,7 @@ public class TreeHitCheck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("DestroyedTree"))
+        if (other.CompareTag("Axe"))
         {
             float current = _animator.GetFloat("AttackCount");
             _animator.SetFloat("AttackCount", current + 1f);

@@ -13,6 +13,7 @@ TagManager:
   - playerr
   - Gun
   - DestroyedTree
+  - PickUpObject
   layers:
   - Default
   - TransparentFX

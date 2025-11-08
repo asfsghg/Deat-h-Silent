@@ -59,15 +59,17 @@ public class InventoriBETA : MonoBehaviour
            out hit, pickDistance))
         {
            
-            if (hit.transform.CompareTag("Apple") || hit.transform.CompareTag("Weapon") || hit.transform.CompareTag("Gun"))
+            if (hit.transform.CompareTag("Axe") || hit.transform.CompareTag("Apple") || hit.transform.CompareTag("Weapon"))
             {
                 GameObject item = hit.transform.gameObject;
 
                 Rigidbody rb = item.GetComponent<Rigidbody>();
+                Collider col = item.GetComponent<Collider>();
                 if (rb != null)
                 {
                     rb.isKinematic = true;
                     rb.useGravity = false;
+                    col.isTrigger = true;
                 }
 
                 item.transform.SetParent(handPoint);
@@ -95,10 +97,12 @@ public class InventoriBETA : MonoBehaviour
         currentItem.transform.SetParent(null);
 
         Rigidbody rb = currentItem.GetComponent<Rigidbody>();
+        Collider col = currentItem.GetComponent<Collider>();
         if (rb != null)
         {
             rb.isKinematic = false;
             rb.useGravity = true;
+            col.isTrigger = false;
         }
 
         currentItem.transform.position =

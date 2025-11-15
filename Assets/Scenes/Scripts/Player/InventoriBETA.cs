@@ -5,9 +5,11 @@ using UnityEngine;
 public class InventoriBETA : MonoBehaviour
 
 {
+    
     public GameObject playerCamera;
     public float pickDistance = 20f;
 
+    
     public KeyCode pickKey = KeyCode.F;
     public KeyCode dropKey = KeyCode.G;
 
@@ -17,6 +19,7 @@ public class InventoriBETA : MonoBehaviour
 
     void Start()
     {
+        
         handPoint = new GameObject("HandPoint").transform;
         handPoint.SetParent(transform);
         handPoint.localPosition = Vector3.zero;
@@ -25,87 +28,65 @@ public class InventoriBETA : MonoBehaviour
 
     void Update()
     {
+       
         if (Input.GetKeyDown(pickKey))
             PickUp();
 
+       
         if (Input.GetKeyDown(dropKey))
             Drop();
 
-        for (int i = 0; i < items.Count && i < 9; i++) // клавіші 1..9
+        
+        for (int i = 0; i < items.Count; i++)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1 + i))
                 SetActiveItem(i);
         }
 
+       
         if (currentIndex != -1 && Input.GetMouseButtonDown(0))
             PlayUseAnimation();
     }
 
+    
     void PickUp()
     {
-        if (playerCamera == null)
-        {
-            Debug.LogWarning("playerCamera не задана в інспекторі!");
-            return;
-        }
+        if (!playerCamera) return;
 
         RaycastHit hit;
-        Vector3 origin = playerCamera.transform.position;
-        Vector3 dir = playerCamera.transform.forward;
-
-        // намалювати для дебагу (тимчасово)
-        Debug.DrawRay(origin, dir * pickDistance, Color.green, 1f);
-
-        if (Physics.Raycast(origin, dir, out hit, pickDistance))
+        if (Physics.Raycast(playerCamera.transform.position,
+           playerCamera.transform.forward,
+           out hit, pickDistance))
         {
-            // Отримуємо головний об'єкт, пов'язаний з колайдером / Rigidbody
-            GameObject hitObject = null;
-            if (hit.rigidbody != null)
-                hitObject = hit.rigidbody.gameObject;
-            else
-                hitObject = hit.collider.gameObject;
-
-            if (hitObject == null) return;
-
-            // Перевірка тегів (використовуємо ||). Переконайся, що теги в сцені збігаються (наприклад "Apple", "Weapon", "Other").
-            string t = hitObject.tag;
-            if (t == "Apple" || t == "Weapon" || t == "Other")
+           
+            if (hit.transform.CompareTag("Axe") || hit.transform.CompareTag("Apple") || hit.transform.CompareTag("Weapon"))
             {
-                // Якщо предмет уже в нашому списку — ігноруємо
-                if (items.Contains(hitObject))
-                {
-                    Debug.Log($"{hitObject.name} вже підібрано.");
-                    return;
-                }
+                GameObject item = hit.transform.gameObject;
 
-                // Вимикаємо фізику і чіпляємо предмет за handPoint
-                Rigidbody rb = hitObject.GetComponent<Rigidbody>();
+                Rigidbody rb = item.GetComponent<Rigidbody>();
+                Collider col = item.GetComponent<Collider>();
                 if (rb != null)
                 {
                     rb.isKinematic = true;
                     rb.useGravity = false;
+                    col.isTrigger = true;
                 }
 
-                // Зафіксувати масштаб/позицію відносно handPoint
-                hitObject.transform.SetParent(handPoint, true);
-                hitObject.transform.localPosition = Vector3.zero;
-                hitObject.transform.localEulerAngles = new Vector3(10f, 0f, 0f);
+                item.transform.SetParent(handPoint);
+                item.transform.localPosition = Vector3.zero;
+                item.transform.localEulerAngles = new Vector3(10f, 0f, 0f);
 
-                items.Add(hitObject);
+                items.Add(item);
 
                 if (currentIndex == -1)
                     SetActiveItem(0);
                 else
-                    hitObject.SetActive(false);
-            }
-            else
-            {
-                // Для дебагу: який тег був виявлений
-                Debug.Log($"Raycast влучив у {hitObject.name} з тегом '{hitObject.tag}' (не підходить під pick).");
+                    item.SetActive(false);
             }
         }
     }
 
+   
     void Drop()
     {
         if (currentIndex == -1) return;
@@ -116,14 +97,17 @@ public class InventoriBETA : MonoBehaviour
         currentItem.transform.SetParent(null);
 
         Rigidbody rb = currentItem.GetComponent<Rigidbody>();
+        Collider col = currentItem.GetComponent<Collider>();
         if (rb != null)
         {
             rb.isKinematic = false;
             rb.useGravity = true;
+            col.isTrigger = false;
         }
 
         currentItem.transform.position =
             playerCamera.transform.position + playerCamera.transform.forward * 2f;
+
         if (items.Count > 0)
         {
             currentIndex = Mathf.Clamp(currentIndex - 1, 0, items.Count - 1);
@@ -152,15 +136,15 @@ public class InventoriBETA : MonoBehaviour
 
         if (anim != null)
         {
-            anim.ResetTrigger("Use");
-            anim.SetTrigger("Use");
+            anim.ResetTrigger("Use");   
+            anim.SetTrigger("Use");     
         }
         else
         {
-            Debug.LogWarning($"{currentItem.name} не має Animator.");
+            Debug.LogWarning($"{currentItem.name}");
         }
     }
-
+   
 }
 
 

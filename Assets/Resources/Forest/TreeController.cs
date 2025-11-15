@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class TreeHitCheck : MonoBehaviour
 {
+    private ParticleSystem particle;
     private Animator _animator;
     private void Awake()
     {
+        particle = GetComponentInChildren<ParticleSystem>();
+        particle.Stop();
+        
         _animator = GetComponent<Animator>();
         _animator.SetFloat("AttackCount", 1f);
        
@@ -30,7 +34,7 @@ public class TreeHitCheck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("DestroyedTree"))
+        if (other.CompareTag("Axe"))
         {
             float current = _animator.GetFloat("AttackCount");
             _animator.SetFloat("AttackCount", current + 1f);
@@ -46,7 +50,9 @@ public class TreeHitCheck : MonoBehaviour
     IEnumerator Attack()
     {
         _animator.SetTrigger("IsAtacked");
+        particle.Play();
         yield return new WaitForSeconds(1f);
+        particle.Stop();
         _animator.ResetTrigger("IsAtacked");
     }
 }

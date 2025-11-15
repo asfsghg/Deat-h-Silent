@@ -12,9 +12,8 @@ TagManager:
   - NoBaseplate
   - playerr
   - Gun
-  - item
-  - Rock
-  - Potion
+  - DestroyedTree
+  - PickUpObject
   layers:
   - Default
   - TransparentFX

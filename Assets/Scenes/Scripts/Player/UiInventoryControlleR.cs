@@ -10,13 +10,13 @@ public class UiInventoryControlleR : MonoBehaviour
 {
     [SerializeField] private Image[] slotIcons;
 
-    
+
     [SerializeField] private Sprite appleSprite;
-    [SerializeField] private Sprite appSprite; 
+    [SerializeField] private Sprite appSprite;
     [SerializeField] private Sprite weaponSprite;
     [SerializeField] private Sprite AxeSprite;
-  
-    
+
+
 
     [SerializeField] private Sprite emptyIcon;
 
@@ -24,7 +24,7 @@ public class UiInventoryControlleR : MonoBehaviour
     {
         Transform handPoint = GameObject.Find("HandPoint")?.transform;
 
-        
+
         for (int i = 0; i < slotIcons.Length; i++)
         {
             slotIcons[i].sprite = emptyIcon;
@@ -37,11 +37,11 @@ public class UiInventoryControlleR : MonoBehaviour
 
         foreach (Transform child in handPoint)
         {
-            if (slotIndex >= slotIcons.Length) break; 
+            if (slotIndex >= slotIcons.Length) break;
 
             if (child.CompareTag("Apple"))
                 slotIcons[slotIndex].sprite = appleSprite;
-            else if (child.CompareTag("Apple")) 
+            else if (child.CompareTag("App"))
                 slotIcons[slotIndex].sprite = appSprite;
             else if (child.CompareTag("Gun"))
                 slotIcons[slotIndex].sprite = weaponSprite;

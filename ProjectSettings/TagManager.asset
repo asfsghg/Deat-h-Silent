@@ -12,6 +12,9 @@ TagManager:
   - NoBaseplate
   - playerr
   - Gun
+  - item
+  - Rock
+  - Potion
   layers:
   - Default
   - TransparentFX

@@ -49,7 +49,7 @@ namespace DiabolicalGames
         private Image healthFill;
         private Camera mainCam;
 
-        // ------------------------ нямнбмне ------------------------
+       
         void Start()
         {
             mainCam = Camera.main;

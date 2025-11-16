@@ -14,6 +14,8 @@ TagManager:
   - Gun
   - DestroyedTree
   - PickUpObject
+  - Axe
+  - Tree
   layers:
   - Default
   - TransparentFX

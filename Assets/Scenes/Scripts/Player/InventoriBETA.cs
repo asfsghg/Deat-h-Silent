@@ -59,7 +59,7 @@ public class InventoriBETA : MonoBehaviour
            out hit, pickDistance))
         {
            
-            if (hit.transform.CompareTag("Axe") || hit.transform.CompareTag("Apple") || hit.transform.CompareTag("Weapon"))
+            if (hit.transform.CompareTag("Axe") || hit.transform.CompareTag("Apple") || hit.transform.CompareTag("Weapon") || hit.transform.CompareTag("Tree"))
             {
                 GameObject item = hit.transform.gameObject;
 

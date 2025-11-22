@@ -15,7 +15,6 @@ public class UiInventoryControlleR : MonoBehaviour
     [SerializeField] private Sprite appSprite; 
     [SerializeField] private Sprite weaponSprite;
     [SerializeField] private Sprite AxeSprite;
-    [SerializeField] private Sprite TreeSprite;
   
     
 
@@ -48,8 +47,6 @@ public class UiInventoryControlleR : MonoBehaviour
                 slotIcons[slotIndex].sprite = weaponSprite;
             else if (child.CompareTag("Axe"))
                 slotIcons[slotIndex].sprite = AxeSprite;
-            else if (child.CompareTag("Tree"))
-                slotIcons[slotIndex].sprite = TreeSprite;
             else
                 slotIcons[slotIndex].sprite = emptyIcon;
 

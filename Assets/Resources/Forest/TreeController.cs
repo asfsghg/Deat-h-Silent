@@ -1,5 +1,6 @@
 using System.Collections;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -7,6 +8,8 @@ public class TreeHitCheck : MonoBehaviour
 {
     private ParticleSystem particle;
     private Animator _animator;
+    [SerializeField] private GameObject TreeSpawn;
+    [SerializeField] private Transform TreePoint;
     private void Awake()
     {
         particle = GetComponentInChildren<ParticleSystem>();
@@ -25,24 +28,28 @@ public class TreeHitCheck : MonoBehaviour
 
             a = Mathf.MoveTowards(a, 4f, Time.deltaTime);
             _animator.SetFloat("AttackCount", a);
-            
+            StartCoroutine(FallingTree());
+           
+
         }
         
     }
 
     
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Axe"))
         {
-            float current = _animator.GetFloat("AttackCount");
-            _animator.SetFloat("AttackCount", current + 1f);
+            if (Input.GetMouseButtonDown(0))
+            {
+                float current = _animator.GetFloat("AttackCount");
+                _animator.SetFloat("AttackCount", current + 1f);
             
-            float a = _animator.GetFloat("AttackCount");
-            Debug.Log("AttackCount = " + a);
-            StartCoroutine(Attack());
-            
+                float a = _animator.GetFloat("AttackCount");
+                Debug.Log("AttackCount = " + a);
+                StartCoroutine(Attack());
+            }
             
         }
     }
@@ -54,6 +61,13 @@ public class TreeHitCheck : MonoBehaviour
         yield return new WaitForSeconds(1f);
         particle.Stop();
         _animator.ResetTrigger("IsAtacked");
+    }
+
+    IEnumerator FallingTree()
+    {
+        yield return new WaitForSeconds(5f);
+        Instantiate(TreeSpawn, TreePoint.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }
 

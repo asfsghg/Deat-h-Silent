@@ -33,8 +33,8 @@ public class UiInventoryControlleR : MonoBehaviour
             if (child.CompareTag("Apple"))
                 slotIcons[slotIndex].sprite = appleSprite;
 
-            else if (child.CompareTag("App"))
-                slotIcons[slotIndex].sprite = appSprite;
+            //else if (child.CompareTag("App"))
+               // slotIcons[slotIndex].sprite = appSprite;
 
             else if (child.CompareTag("Gun"))
                 slotIcons[slotIndex].sprite = weaponSprite;

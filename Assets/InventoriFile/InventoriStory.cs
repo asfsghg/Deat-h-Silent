@@ -1,377 +1,52 @@
-﻿
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using RedstoneinventeGameStudio;
-using Unity.VisualScripting;
+﻿using UnityEngine;
 
 public class InventoriStory : MonoBehaviour
 {
-    public List<InventoriSlot> slots = new List<InventoriSlot>();
-    public float pickupRadius = 10f;
-    private Camera MainCamera;
-    public bool IsOpen;
-    public GameObject UIPanel;
+    public InventoryData inventoryCore;
+    public float pickupRadius = 3f;
+    public LayerMask itemLayer;   
 
-    void Start()
-    {
-        MainCamera = Camera.main;
-        
-        InventoriSlot[] slotArray = GetComponentsInChildren<InventoriSlot>();
-        slots.AddRange(slotArray);
-    }
-
-    void LateUpdate()
+    void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            IsOpen = !IsOpen;
-            UIPanel.SetActive(IsOpen);
-        }
-        
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            PickupNearbyItem();
+            Pickup();
         }
     }
 
-    void PickupNearbyItem()
+    private void Pickup()
     {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        Vector3 center = transform.position;
-        Collider[] colliders = Physics.OverlapSphere(center, pickupRadius);
 
-        foreach (Collider col in colliders)                       
-            
+        Collider[] colliders = Physics.OverlapSphere(transform.position, pickupRadius, itemLayer);
+
+        foreach (var hit in colliders)
         {
-            Debug.Log(1);
-            if (col.TryGetComponent<Item>(out Item itemS))
+    
+            if (hit.TryGetComponent<Item>(out Item worldItem))
             {
-                Debug.Log("редмет: " + itemS.itemData.itemName);
 
-                AddItemToInventory(itemS.itemData, itemS.amount);
+                if (worldItem.itemData != null)
+                {
+   
+                    bool success = inventoryCore.AddItem(worldItem.itemData);
 
-                Destroy(col.gameObject);
+                    if (success)
+                    {
+                     
+                        Destroy(hit.gameObject); 
+                        break;
+                    }
+                }
+      
             }
         }
-
     }
 
-    void AddItemToInventory(InventoryItemData item, int amount)
+
+    private void OnDrawGizmosSelected()
     {
-       
-        foreach (InventoriSlot slot in slots)
-        {
-            if (!slot.isEmpty && slot.item == item)
-            {
-                slot.amount += amount;
-                slot.UpdateUI(); 
-                return;
-            }
-        }
-
-        
-        foreach (InventoriSlot slot in slots)
-        {
-            if (slot.isEmpty)
-            {
-                slot.item = item;      
-                slot.amount = amount;  
-                slot.isEmpty = false;   
-                slot.UpdateUI();
-                //slot.itemAmount.text = amount.ToString();
-                return; 
-            }
-        }
-
-
-        Debug.Log("фул инвентарь");
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, pickupRadius);
     }
 }

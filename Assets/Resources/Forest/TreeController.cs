@@ -1,73 +1,84 @@
 using System.Collections;
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-
 
 public class TreeHitCheck : MonoBehaviour
 {
-    private ParticleSystem particle;
+    [Header("Settings")]
+    [SerializeField] private GameObject treeLogPrefab; 
+    [SerializeField] private Transform spawnPoint;  
+    [SerializeField] private int hitsToDestroy = 4;  
+
+    private ParticleSystem _particle;
     private Animator _animator;
-    [SerializeField] private GameObject TreeSpawn;
-    [SerializeField] private Transform TreePoint;
+    private int _currentHits = 0;
+    private bool _isFalling = false;
+
     private void Awake()
     {
-        particle = GetComponentInChildren<ParticleSystem>();
-        particle.Stop();
+        _particle = GetComponentInChildren<ParticleSystem>();
+        if (_particle != null) _particle.Stop();
         
         _animator = GetComponent<Animator>();
-        _animator.SetFloat("AttackCount", 1f);
-       
     }
-
-    private void LateUpdate()
-    {
-        float a = _animator.GetFloat("AttackCount");
-        if (a >= 4)
-        {
-
-            a = Mathf.MoveTowards(a, 4f, Time.deltaTime);
-            _animator.SetFloat("AttackCount", a);
-            StartCoroutine(FallingTree());
-           
-
-        }
-        
-    }
-
-    
 
     private void OnTriggerStay(Collider other)
     {
+
+        if (_isFalling) return;
+
         if (other.CompareTag("Axe"))
         {
             if (Input.GetMouseButtonDown(0))
             {
-                float current = _animator.GetFloat("AttackCount");
-                _animator.SetFloat("AttackCount", current + 1f);
-            
-                float a = _animator.GetFloat("AttackCount");
-                Debug.Log("AttackCount = " + a);
-                StartCoroutine(Attack());
+                OnHit();
             }
-            
         }
     }
 
-    IEnumerator Attack()
+    private void OnHit()
+    {
+        _currentHits++;
+        
+
+        StopCoroutine("PlayHitEffects");
+        StartCoroutine(PlayHitEffects());
+
+        Debug.Log($"Удар по дереву! Всего ударов: {_currentHits}");
+
+        if (_currentHits >= hitsToDestroy)
+        {
+            StartFalling();
+        }
+    }
+
+    private void StartFalling()
+    {
+        _isFalling = true;
+
+        StartCoroutine(FallingTreeRoutine());
+    }
+
+    IEnumerator PlayHitEffects()
     {
         _animator.SetTrigger("IsAtacked");
-        particle.Play();
+        if (_particle != null) _particle.Play();
+
         yield return new WaitForSeconds(1f);
-        particle.Stop();
+
+        if (_particle != null) _particle.Stop();
         _animator.ResetTrigger("IsAtacked");
     }
 
-    IEnumerator FallingTree()
+    IEnumerator FallingTreeRoutine()
     {
-        yield return new WaitForSeconds(5f);
-        Instantiate(TreeSpawn, TreePoint.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(2f); 
+
+        if (treeLogPrefab != null)
+        {
+            Instantiate(treeLogPrefab, spawnPoint.position, spawnPoint.rotation);
+        }
+
         Destroy(gameObject);
     }
 }
-

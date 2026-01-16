@@ -1,22 +1,31 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
-public class inventopi : MonoBehaviour
+public class InventoryData : MonoBehaviour
 {
-    public List<UnityEditor.Progress.Item> items = new List<UnityEditor.Progress.Item>();
-    public int capacity = 20;
+    public List<InventoryItemData> items = new List<InventoryItemData>();
+    public int capacity = 6;
 
-    public bool AddItem(UnityEditor.Progress.Item item)
+
+    public Action OnChange; 
+
+    public bool AddItem(InventoryItemData itemData)
     {
-        if (items.Count >= capacity) return false;
-        items.Add(item);
+        Debug.Log("item was Added");
+        if (itemData == null || items.Count >= capacity) return false;
+        Debug.Log("item was Added2");
+        items.Add(itemData);
+
+
+        OnChange?.Invoke(); 
         return true;
     }
 
-    public void RemoveItem(UnityEditor.Progress.Item item)
+    public bool RemoveItem(InventoryItemData itemData)
     {
-        items.Remove(item);
+        items.Remove(itemData);
+        OnChange?.Invoke(); 
+        return true;
     }
 }

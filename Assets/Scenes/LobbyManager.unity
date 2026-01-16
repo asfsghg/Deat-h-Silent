@@ -433,6 +433,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1674086234077570052, guid: 9c179d26f1495834f86e301969f5a09c,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1905044519864517579, guid: 9c179d26f1495834f86e301969f5a09c,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -567,6 +572,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804529556574773169, guid: 9c179d26f1495834f86e301969f5a09c,
+        type: 3}
+      propertyPath: m_HorizontalScrollbar
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3989789096851533080, guid: 9c179d26f1495834f86e301969f5a09c,
         type: 3}
@@ -991,13 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae8dceb1d46f2147b5558d29dfdba2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 7824815210807871005, guid: aed5482b270023147ab12bf2a109dcad,
-    type: 3}
-  playerSpawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  LeaveButton: {fileID: 0}
 --- !u!1 &1808781725
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,6 +40,7 @@ public class InventoriSlot : MonoBehaviour
     public void SetIcon(Sprite icon)
     {
         Image img = iconGO.GetComponent<Image>();
+        
         img.color = Color.white;
         img.sprite = icon;
         // iconGO.GetComponent<Image>().color = new Color(1, 1, 1, 1);
@@ -50,7 +51,7 @@ public class InventoriSlot : MonoBehaviour
     {
         if (!isEmpty && item != null)
         {
-            SetIcon(item.itemIcon);
+            SetIcon(item.icon);
             itemAmount.text = amount.ToString();
         }
         else
